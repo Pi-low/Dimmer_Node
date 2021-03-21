@@ -1,0 +1,3 @@
+[submodule "02-SRC/04-DRIVER/NRF24L01"]
+	path = 02-SRC/04-DRIVER/NRF24L01
+	url = git@github.com:Pyragric/NRF_Lib.git
