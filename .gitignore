@@ -1,0 +1,14 @@
+
+*.i
+
+*.p1
+
+*.d
+
+*.mk
+
+*.bash
+
+*.properties
+
+nbproject/private/
