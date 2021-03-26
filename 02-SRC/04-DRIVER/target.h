@@ -9,11 +9,14 @@
 #define	TARGET_H
 
 #include <xc.h>
+#define _XTAL_FREQ 16000000UL
+#define LED_PIN LATCbits.LATC4
 
-#define CE_LAT LATC0_bit
-#define CS__LAT LATC1_bit
+extern uint16_t Tick_1ms;
 
 void MCU_Init(void);
+uint16_t GetTick_1ms(void);
+uint8_t SPI_Exchange(uint8_t Data);
 
 #endif	/* TARGET_H */
 

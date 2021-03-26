@@ -70,7 +70,7 @@ __Hsfr9 0 0 ABS 0
 __Lsfr9 0 0 ABS 0
 __end_of_NRF24L01_Init C3 0 CODE 0
 NRF24L01_Init@SPI_Exchange 72 0 COMMON 1
-___stackhi 21EF 0 ABS 0
+___stackhi 21DF 0 ABS 0
 __Hcode 0 0 ABS 0
 __Lcode 0 0 ABS 0
 NRF_Read_Register@Length 72 0 COMMON 1
@@ -156,8 +156,8 @@ __Hbank5 0 0 ABS 0
 __Lbank5 0 0 ABS 0
 __Hpowerup 0 0 CODE 0
 __Lpowerup 0 0 CODE 0
-__Hbank6 0 0 ABS 0
-__Lbank6 0 0 ABS 0
+__Hbank6 0 0 BANK6 1
+__Lbank6 0 0 BANK6 1
 __Hbank7 0 0 BANK7 1
 __Lbank7 0 0 BANK7 1
 __Hbank8 0 0 BANK8 1
@@ -247,7 +247,7 @@ __Hend_init 16 0 CODE 0
 __Lend_init 14 0 CODE 0
 __end_of_MCU_Init B8 0 CODE 0
 __end_of_NRF_Read_Register 98 0 CODE 0
-__Hreset_vec 2 0 CODE 0
+__Hreset_vec 3 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 main@timeout 5E 0 BANK0 1
 intlevel0 0 0 ENTRY 0
@@ -268,13 +268,13 @@ __pmaintext 22 0 CODE 0
 __initialization 16 0 CODE 0
 __end_of_NRF_Set_SPI_Handler D7 0 CODE 0
 %segments
-reset_vec 0 3 CODE 0 0
+reset_vec 0 5 CODE 0 0
 intentry 8 1AD CODE 8 0
 cstackCOMMON 70 7A COMMON 70 1
 bssBANK0 20 5F BANK0 20 1
 %locals
-dist/default/production\Dim_Node.X.production.o
-C:\Users\Nello\AppData\Local\Temp\s33o.s
+dist/default/debug\Dim_Node.X.debug.o
+C:\Users\Nello\AppData\Local\Temp\s92o.s
 1279 16 0 CODE 0
 1282 16 0 CODE 0
 1315 16 0 CODE 0

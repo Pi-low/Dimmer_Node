@@ -18,6 +18,10 @@
                      projectFiles="true">
       </logicalFolder>
       <logicalFolder name="04-DRIVER" displayName="04-DRIVER" projectFiles="true">
+        <logicalFolder name="NRF24L01" displayName="NRF24L01" projectFiles="true">
+          <itemPath>02-SRC/04-DRIVER/NRF24L01/NRF24L01.h</itemPath>
+        </logicalFolder>
+        <itemPath>02-SRC/04-DRIVER/target.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -39,6 +43,10 @@
                      projectFiles="true">
       </logicalFolder>
       <logicalFolder name="04-DRIVER" displayName="04-DRIVER" projectFiles="true">
+        <logicalFolder name="NRF24L01" displayName="NRF24L01" projectFiles="true">
+          <itemPath>02-SRC/04-DRIVER/NRF24L01/NRF24L01.c</itemPath>
+        </logicalFolder>
+        <itemPath>02-SRC/04-DRIVER/target.c</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
@@ -180,7 +188,7 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="debugoptions.useswbreakpoints" value="true"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>
@@ -210,7 +218,7 @@
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
         <property key="programoptions.usehighvoltageonmclr" value="false"/>
         <property key="programoptions.uselvpprogramming" value="false"/>
-        <property key="voltagevalue" value="5.0"/>
+        <property key="voltagevalue" value="3.375"/>
       </ICD3PlatformTool>
       <XC8-CO>
         <property key="coverage-enable" value=""/>

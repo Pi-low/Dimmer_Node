@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Sat Mar 27 00:00:31 2021
+                                                                                               Fri Mar 26 23:55:19 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F1509
@@ -794,11 +794,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    780 ;;		On entry : B1F/0
    781 ;;		On exit  : 0/0
    782 ;;		Unchanged: 0/0
-   783 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-   784 ;;      Params:         0       0       0       0       0       0       0       0
-   785 ;;      Locals:         0       7       0       0       0       0       0       0
-   786 ;;      Temps:          2       0       0       0       0       0       0       0
-   787 ;;      Totals:         2       7       0       0       0       0       0       0
+   783 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   784 ;;      Params:         0       0       0       0       0       0       0
+   785 ;;      Locals:         0       7       0       0       0       0       0
+   786 ;;      Temps:          2       0       0       0       0       0       0
+   787 ;;      Totals:         2       7       0       0       0       0       0
    788 ;;Total ram usage:        9 bytes
    789 ;; Hardware stack levels required when called:    3
    790 ;; This function calls:
@@ -817,10 +817,10 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    803                           ;incstack = 0
    804                           ; Regs used in _main: [wreg+fsr1l+fsr1h+status,2+status,0+pclath+cstack]
    805                           
-   806  0022  30C8               	movlw	200
+   806  0022  30F4               	movlw	244
    807  0023  0020               	movlb	0	; select bank0
    808  0024  00DE               	movwf	main@timeout
-   809  0025  3000               	movlw	0
+   809  0025  3001               	movlw	1
    810  0026  00DF               	movwf	main@timeout+1
    811  0027                     l1070:
    812  0027  3059               	movlw	low main@P0ddr
@@ -886,9 +886,9 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    872  005F  008E               	movwf	14	;volatile
    873  0060  0020               	movlb	0	; select bank0
    874  0061  0825               	movf	_Tick_1ms,w
-   875  0062  3EC8               	addlw	200
+   875  0062  3EF4               	addlw	244
    876  0063  00DE               	movwf	main@timeout
-   877  0064  3000               	movlw	0
+   877  0064  3001               	movlw	1
    878  0065  3D26               	addwfc	_Tick_1ms+1,w
    879  0066  00DF               	movwf	main@timeout+1
    880  0067  2849               	goto	l1080
@@ -918,11 +918,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
    904 ;;		On entry : 0/0
    905 ;;		On exit  : 0/0
    906 ;;		Unchanged: 0/0
-   907 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-   908 ;;      Params:         2       0       0       0       0       0       0       0
-   909 ;;      Locals:         2       0       0       0       0       0       0       0
-   910 ;;      Temps:          2       0       0       0       0       0       0       0
-   911 ;;      Totals:         6       0       0       0       0       0       0       0
+   907 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+   908 ;;      Params:         2       0       0       0       0       0       0
+   909 ;;      Locals:         2       0       0       0       0       0       0
+   910 ;;      Temps:          2       0       0       0       0       0       0
+   911 ;;      Totals:         6       0       0       0       0       0       0
    912 ;;Total ram usage:        6 bytes
    913 ;; Hardware stack levels used:    1
    914 ;; Hardware stack levels required when called:    2
@@ -1027,11 +1027,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1013 ;;		On entry : 0/0
   1014 ;;		On exit  : 0/0
   1015 ;;		Unchanged: 0/0
-  1016 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-  1017 ;;      Params:         1       0       0       0       0       0       0       0
-  1018 ;;      Locals:         0       0       0       0       0       0       0       0
-  1019 ;;      Temps:          0       0       0       0       0       0       0       0
-  1020 ;;      Totals:         1       0       0       0       0       0       0       0
+  1016 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1017 ;;      Params:         1       0       0       0       0       0       0
+  1018 ;;      Locals:         0       0       0       0       0       0       0
+  1019 ;;      Temps:          0       0       0       0       0       0       0
+  1020 ;;      Totals:         1       0       0       0       0       0       0
   1021 ;;Total ram usage:        1 bytes
   1022 ;; Hardware stack levels used:    1
   1023 ;; Hardware stack levels required when called:    1
@@ -1089,11 +1089,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1075 ;;		On entry : 0/0
   1076 ;;		On exit  : 0/0
   1077 ;;		Unchanged: 0/0
-  1078 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-  1079 ;;      Params:         2       0       0       0       0       0       0       0
-  1080 ;;      Locals:         0       0       0       0       0       0       0       0
-  1081 ;;      Temps:          0       0       0       0       0       0       0       0
-  1082 ;;      Totals:         2       0       0       0       0       0       0       0
+  1078 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1079 ;;      Params:         2       0       0       0       0       0       0
+  1080 ;;      Locals:         0       0       0       0       0       0       0
+  1081 ;;      Temps:          0       0       0       0       0       0       0
+  1082 ;;      Totals:         2       0       0       0       0       0       0
   1083 ;;Total ram usage:        2 bytes
   1084 ;; Hardware stack levels used:    1
   1085 ;; Hardware stack levels required when called:    2
@@ -1143,11 +1143,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1129 ;;		On entry : 0/0
   1130 ;;		On exit  : 0/0
   1131 ;;		Unchanged: 0/0
-  1132 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-  1133 ;;      Params:         2       0       0       0       0       0       0       0
-  1134 ;;      Locals:         0       0       0       0       0       0       0       0
-  1135 ;;      Temps:          0       0       0       0       0       0       0       0
-  1136 ;;      Totals:         2       0       0       0       0       0       0       0
+  1132 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1133 ;;      Params:         2       0       0       0       0       0       0
+  1134 ;;      Locals:         0       0       0       0       0       0       0
+  1135 ;;      Temps:          0       0       0       0       0       0       0
+  1136 ;;      Totals:         2       0       0       0       0       0       0
   1137 ;;Total ram usage:        2 bytes
   1138 ;; Hardware stack levels used:    1
   1139 ;; Hardware stack levels required when called:    1
@@ -1190,11 +1190,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1176 ;;		On entry : 0/0
   1177 ;;		On exit  : 0/0
   1178 ;;		Unchanged: 0/0
-  1179 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-  1180 ;;      Params:         0       0       0       0       0       0       0       0
-  1181 ;;      Locals:         0       0       0       0       0       0       0       0
-  1182 ;;      Temps:          0       0       0       0       0       0       0       0
-  1183 ;;      Totals:         0       0       0       0       0       0       0       0
+  1179 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1180 ;;      Params:         0       0       0       0       0       0       0
+  1181 ;;      Locals:         0       0       0       0       0       0       0
+  1182 ;;      Temps:          0       0       0       0       0       0       0
+  1183 ;;      Totals:         0       0       0       0       0       0       0
   1184 ;;Total ram usage:        0 bytes
   1185 ;; Hardware stack levels used:    1
   1186 ;; Hardware stack levels required when called:    1
@@ -1275,11 +1275,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1261 ;;		On entry : 0/0
   1262 ;;		On exit  : 0/0
   1263 ;;		Unchanged: 0/0
-  1264 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-  1265 ;;      Params:         0       0       0       0       0       0       0       0
-  1266 ;;      Locals:         0       0       0       0       0       0       0       0
-  1267 ;;      Temps:          0       0       0       0       0       0       0       0
-  1268 ;;      Totals:         0       0       0       0       0       0       0       0
+  1264 ;; Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+  1265 ;;      Params:         0       0       0       0       0       0       0
+  1266 ;;      Locals:         0       0       0       0       0       0       0
+  1267 ;;      Temps:          0       0       0       0       0       0       0
+  1268 ;;      Totals:         0       0       0       0       0       0       0
   1269 ;;Total ram usage:        0 bytes
   1270 ;; Hardware stack levels used:    1
   1271 ;; This function calls:
@@ -1378,7 +1378,6 @@ Auto Spaces:
     BANK3            80      0       0
     BANK4            80      0       0
     BANK5            80      0       0
-    BANK6            16      0       0
 
 Pointer List with Targets:
 
@@ -1455,14 +1454,6 @@ Critical Paths under _ISR in BANK5
 
     None.
 
-Critical Paths under _main in BANK6
-
-    None.
-
-Critical Paths under _ISR in BANK6
-
-    None.
-
 Call Graph Tables:
 
  ---------------------------------------------------------------------------------
@@ -1517,7 +1508,7 @@ Call Graph Tables:
 
  Address spaces:
 Name               Size   Autos  Total    Cost      Usage
-BIGRAM             1F0      0       0       0        0.0%
+BIGRAM             1E0      0       0       0        0.0%
 NULL                 0      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
 BITCOMMON            E      0       0       1        0.0%
@@ -1568,15 +1559,13 @@ SFR14                0      0       0      15        0.0%
 BANK5               50      0       0      16        0.0%
 BITSFR15             0      0       0      16        0.0%
 SFR15                0      0       0      16        0.0%
-BITBANK6            10      0       0      17        0.0%
 BITSFR16             0      0       0      17        0.0%
 SFR16                0      0       0      17        0.0%
-BANK6               10      0       0      18        0.0%
+DATA                 0      0      4B      17        0.0%
 BITSFR17             0      0       0      18        0.0%
 SFR17                0      0       0      18        0.0%
 BITSFR18             0      0       0      19        0.0%
 SFR18                0      0       0      19        0.0%
-DATA                 0      0      4B      19        0.0%
 BITSFR19             0      0       0      20        0.0%
 SFR19                0      0       0      20        0.0%
 BITSFR20             0      0       0      21        0.0%
@@ -1606,7 +1595,7 @@ SFR31                0      0       0      32        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Sat Mar 27 00:00:31 2021
+Symbol Table                                                                                   Fri Mar 26 23:55:19 2021
 
                             l48 00C2                             l211 00C6                             l214 00CB  
                            l146 0094                             l147 0097                             l164 00D6  

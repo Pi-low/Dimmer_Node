@@ -3,20 +3,19 @@ Microchip MPLAB XC8 Compiler V2.31
 Linker command line:
 
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\pic\dat\en_msgs.txt -cn \
-  -h+dist/default/production\Dim_Node.X.production.sym \
-  --cmf=dist/default/production\Dim_Node.X.production.cmf -z -Q16F1509 \
-  -oC:\Users\Nello\AppData\Local\Temp\s33o.2 --defsym=__MPLAB_BUILD=1 \
-  -Mdist/default/production/Dim_Node.X.production.map -E1 -ver=XC8 Compiler \
-  --acfsm=1493 -ASTACK=02040h-021EFh -pstack=STACK -ACODE=00h-07FFhx4 \
+  -h+dist/default/debug\Dim_Node.X.debug.sym \
+  --cmf=dist/default/debug\Dim_Node.X.debug.cmf -z -Q16F1509 \
+  -oC:\Users\Nello\AppData\Local\Temp\s92o.2 --defsym=__MPLAB_BUILD=1 \
+  -Mdist/default/debug/Dim_Node.X.debug.map -E1 -ver=XC8 Compiler \
+  --acfsm=1493 -ASTACK=02040h-021DFh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
   -AENTRY=00h-0FFhx32 -ACOMMON=070h-07Fh -ABANK0=020h-06Fh \
   -ABANK1=0A0h-0EFh -ABANK2=0120h-016Fh -ABANK3=01A0h-01EFh \
-  -ABANK4=0220h-026Fh -ABANK5=02A0h-02EFh -ABANK6=0320h-032Fh \
-  -ABIGRAM=02000h-021EFh \
-  -ARAM=020h-06Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh,0220h-026Fh,02A0h-02EFh,0320h-032Fh \
+  -ABANK4=0220h-026Fh -ABANK5=02A0h-02EFh -ABIGRAM=02000h-021DFh \
+  -ARAM=020h-06Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh,0220h-026Fh,02A0h-02EFh \
   -AABS1=020h-07Fh,0A0h-0EFh,0120h-016Fh,01A0h-01EFh,0220h-026Fh,02A0h-02EFh,0320h-032Fh \
   -ASFR0=00h-01Fh -ASFR1=080h-09Fh -ASFR2=0100h-011Fh -ASFR3=0180h-019Fh \
-  -ASFR4=0200h-021Fh -ASFR5=0280h-029Fh -ASFR6=0300h-031Fh \
+  -ASFR4=0200h-021Fh -ASFR5=0280h-029Fh -ASFR6=0300h-036Fh \
   -ASFR7=0380h-03EFh -ASFR8=0400h-046Fh -ASFR9=0480h-04EFh \
   -ASFR10=0500h-056Fh -ASFR11=0580h-05EFh -ASFR12=0600h-066Fh \
   -ASFR13=0680h-06EFh -ASFR14=0700h-076Fh -ASFR15=0780h-07EFh \
@@ -28,8 +27,8 @@ Linker command line:
   -ASFR31=0F80h-0FEFh -ACONFIG=08007h-08008h -DCONFIG=2 \
   -AIDLOC=08000h-08003h -DIDLOC=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
   -DENTRY=2 -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE \
-  -pcinit=CODE -pfunctab=ENTRY -k C:\Users\Nello\AppData\Local\Temp\s33o.o \
-  dist/default/production\Dim_Node.X.production.o 
+  -pcinit=CODE -pfunctab=ENTRY -k C:\Users\Nello\AppData\Local\Temp\s92o.o \
+  dist/default/debug\Dim_Node.X.debug.o 
 
 Object code version is 3.11
 
@@ -38,11 +37,11 @@ Machine type is 16F1509
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Nello\AppData\Local\Temp\s33o.o
+C:\Users\Nello\AppData\Local\Temp\s92o.o
                 end_init                             14       14        2        8       0
-                reset_vec                             0        0        2        0       0
+                reset_vec                             0        0        3        0       0
                 config                             8007     8007        2        0       4
-dist/default/production\Dim_Node.X.production.o
+dist/default/debug\Dim_Node.X.debug.o
                 cinit                                16       16        C        8       0
                 intentry                              4        4       10        8       0
                 config                             8007     8007        2        0       4
@@ -65,7 +64,7 @@ TOTAL           Name                               Link     Load   Length     Sp
                 end_init                             14       14        2         0
                 cinit                                16       16        C         0
                 intentry                              4        4       10         0
-                reset_vec                             0        0        2         0
+                reset_vec                             0        0        3         0
                 text5                                98       98       20         0
                 text4                                D2       D2        5         0
                 text3                                B8       B8        B         0
@@ -99,8 +98,6 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   BANK4          
 
         CLASS   BANK5          
-
-        CLASS   BANK6          
 
         CLASS   BIGRAM         
 
@@ -228,13 +225,15 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   BANK7          
 
+        CLASS   BANK6          
+
         CLASS   EEDATA         
 
 
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
-                reset_vec                      000000  000002  000002         0       0  CODE        2
+                reset_vec                      000000  000003  000003         0       0  CODE        2
                 intentry                       000004  0000D3  0000D7         8       0  CODE        2
                 bssBANK0                       000020  000040  000060        20       1  BANK0       1
                 cstackCOMMON                   000070  00000B  00007B        70       1  COMMON      1
@@ -249,14 +248,13 @@ UNUSED ADDRESS RANGES
         BANK3            001A0-001EF              50           1
         BANK4            00220-0026F              50           1
         BANK5            002A0-002EF              50           1
-        BANK6            00320-0032F              10           1
-        BIGRAM           02000-021EF             1F0           1
-        CODE             00002-00003               2           2
+        BIGRAM           02000-021DF             1E0           1
+        CODE             00003-00003               1           2
                          000D7-01FFF             800
         COMMON           0007B-0007D               3           1
-        CONST            00002-00003               2           2
+        CONST            00003-00003               1           2
                          000D7-01FFF             100
-        ENTRY            00002-00003               2           2
+        ENTRY            00003-00003               1           2
                          000D7-01FFF             100
         IDLOC            08000-08003               4           2
         RAM              00060-0006F              10           1
@@ -265,7 +263,6 @@ UNUSED ADDRESS RANGES
                          001A0-001EF              50
                          00220-0026F              50
                          002A0-002EF              50
-                         00320-0032F              10
         SFR0             00000-0001F              20           1
         SFR1             00080-0009F              20           1
         SFR10            00500-0056F              70           1
@@ -294,14 +291,14 @@ UNUSED ADDRESS RANGES
         SFR31            00F80-00FEF              70           1
         SFR4             00200-0021F              20           1
         SFR5             00280-0029F              20           1
-        SFR6             00300-0031F              20           1
+        SFR6             00300-0036F              70           1
         SFR7             00380-003EF              70           1
         SFR8             00400-0046F              70           1
         SFR9             00480-004EF              70           1
-        STACK            02040-021EF             1B0           1
-        STRCODE          00002-00003               2           2
+        STACK            02040-021DF             1A0           1
+        STRCODE          00003-00003               1           2
                          000D7-01FFF            1F29
-        STRING           00002-00003               2           2
+        STRING           00003-00003               1           2
                          000D7-01FFF             100
 
                                   Symbol Table
@@ -389,7 +386,7 @@ __Hmaintext                     maintext     00000
 __HnvCOMMON                     nvCOMMON     00000
 __Hpowerup                      powerup      00000
 __Hram                          ram          00000
-__Hreset_vec                    reset_vec    00002
+__Hreset_vec                    reset_vec    00003
 __Hsfr0                         sfr0         00000
 __Hsfr1                         sfr1         00000
 __Hsfr10                        sfr10        00000
@@ -528,7 +525,7 @@ __S2                            (abs)        00000
 ___int_sp                       stack        00000
 ___latbits                      (abs)        00002
 ___sp                           stack        00000
-___stackhi                      (abs)        021EF
+___stackhi                      (abs)        021DF
 ___stacklo                      (abs)        02040
 __end_of_ISR                    intentry     00014
 __end_of_MCU_Init               text5        000B8
@@ -595,11 +592,11 @@ FUNCTION INFORMATION:
 		On entry : 
 		On exit  : 
 		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-      Params:         0       0       0       0       0       0       0       0
-      Locals:         0       7       0       0       0       0       0       0
-      Temps:          2       0       0       0       0       0       0       0
-      Totals:         2       7       0       0       0       0       0       0
+ Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         0       0       0       0       0       0       0
+      Locals:         0       7       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0
+      Totals:         2       7       0       0       0       0       0
 Total ram usage:        9 bytes
  Hardware stack levels required when called:    3
  This function calls:
@@ -632,11 +629,11 @@ Total ram usage:        9 bytes
 		On entry : 
 		On exit  : 
 		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-      Params:         2       0       0       0       0       0       0       0
-      Locals:         2       0       0       0       0       0       0       0
-      Temps:          2       0       0       0       0       0       0       0
-      Totals:         6       0       0       0       0       0       0       0
+ Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         2       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0
+      Totals:         6       0       0       0       0       0       0
 Total ram usage:        6 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    2
@@ -673,11 +670,11 @@ Total ram usage:        6 bytes
 		On entry : 
 		On exit  : 
 		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-      Params:         1       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0
-      Totals:         1       0       0       0       0       0       0       0
+ Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         1       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0
 Total ram usage:        1 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    1
@@ -710,11 +707,11 @@ Total ram usage:        1 bytes
 		On entry : 
 		On exit  : 
 		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-      Params:         2       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0
-      Totals:         2       0       0       0       0       0       0       0
+ Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         2       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0
+      Totals:         2       0       0       0       0       0       0
 Total ram usage:        2 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    2
@@ -741,11 +738,11 @@ Total ram usage:        2 bytes
 		On entry : 
 		On exit  : 
 		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-      Params:         2       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0
-      Totals:         2       0       0       0       0       0       0       0
+ Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         2       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0
+      Totals:         2       0       0       0       0       0       0
 Total ram usage:        2 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    1
@@ -771,11 +768,11 @@ Total ram usage:        2 bytes
 		On entry : 
 		On exit  : 
 		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-      Params:         0       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0
-      Totals:         0       0       0       0       0       0       0       0
+ Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0
 Total ram usage:        0 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    1
@@ -801,11 +798,11 @@ Total ram usage:        0 bytes
 		On entry : 
 		On exit  : 
 		Unchanged: 
- Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6
-      Params:         0       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0
-      Totals:         0       0       0       0       0       0       0       0
+ Data sizes:     COMMON   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5
+      Params:         0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0
 Total ram usage:        0 bytes
  Hardware stack levels used:    1
  This function calls:
