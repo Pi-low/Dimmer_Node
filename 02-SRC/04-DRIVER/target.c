@@ -16,18 +16,40 @@ void MCU_Init(void) {
     TRISB = 0x3Fu;
     TRISA = 0xFFu;
     
-    SSP1STAT = 0x00;
-    SSP1CON1 = 0x22;
+    /* SPI */
+    SSP1STAT = 0x40u; /* CKE = 1 */
+    SSP1CON1 = 0x22u; /* CKP = 0, SPI MASTER 250Kbps */
     
-    OPTION_REG = 0x83;
+    /* TIMER0 */
+    OPTION_REG = 0x83u;
     TMR0 = 5u;
+    
+    /* TIMER2*/
+    PR2 = 63u;
+    T2CON = 0x05u;
+    
+    /* PWM */
+    PWM1CON = 0xC0;
+    PWM2CON = 0xC0;
+    
     INTCONbits.T0IE = 1u;
+    INTCONbits.INTE = 0u;
     INTCONbits.PEIE = 1u;
     INTCONbits.GIE = 1u;
 }
 
 uint16_t GetTick_1ms(void) {
     return Tick_1ms;
+}
+
+void SetPWM1(uint16_t DutyCycle) {
+    PWM1DCL = (uint8_t) DutyCycle << 6u;
+    PWM1DCH = (uint8_t) (DutyCycle >> 2u);
+}
+
+void SetPWM2(uint16_t DutyCycle) {
+    PWM2DCL = (uint8_t) DutyCycle << 6u;
+    PWM2DCH = (uint8_t) (DutyCycle >> 2u);
 }
 
 void __interrupt() ISR (void) {
@@ -40,7 +62,6 @@ void __interrupt() ISR (void) {
 
 uint8_t SPI_Exchange(uint8_t Data) {
     SSP1BUF = Data;
-    while (!SSP1STATbits.BF) {
-    }
+    while (!SSP1STATbits.BF);
     return SSP1BUF;
 }
