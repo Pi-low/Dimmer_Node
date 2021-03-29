@@ -17,6 +17,8 @@ extern uint16_t Tick_1ms;
 void MCU_Init(void);
 uint16_t GetTick_1ms(void);
 uint8_t SPI_Exchange(uint8_t Data);
+void SetPWM1(uint16_t DutyCycle);
+void SetPWM2(uint16_t DutyCycle);
 
 #endif	/* TARGET_H */
 
