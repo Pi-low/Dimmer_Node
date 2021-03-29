@@ -10,12 +10,10 @@
       <logicalFolder name="02-APPLICATION"
                      displayName="02-APPLICATION"
                      projectFiles="true">
-        <itemPath>02-SRC/02-APPLICATION/main.h</itemPath>
         <itemPath>02-SRC/04-DRIVER/MCU_config.h</itemPath>
+        <itemPath>02-SRC/02-APPLICATION/Appl.h</itemPath>
       </logicalFolder>
-      <logicalFolder name="03-TRANSPORT"
-                     displayName="03-TRANSPORT"
-                     projectFiles="true">
+      <logicalFolder name="03-TRANSPORT" displayName="03-NETWORK" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="04-DRIVER" displayName="04-DRIVER" projectFiles="true">
         <logicalFolder name="NRF24L01" displayName="NRF24L01" projectFiles="true">
@@ -37,10 +35,9 @@
                      displayName="02-APPLICATION"
                      projectFiles="true">
         <itemPath>02-SRC/02-APPLICATION/main.c</itemPath>
+        <itemPath>02-SRC/02-APPLICATION/Appl.c</itemPath>
       </logicalFolder>
-      <logicalFolder name="03-TRANSPORT"
-                     displayName="03-TRANSPORT"
-                     projectFiles="true">
+      <logicalFolder name="03-TRANSPORT" displayName="03-NETWORK" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="04-DRIVER" displayName="04-DRIVER" projectFiles="true">
         <logicalFolder name="NRF24L01" displayName="NRF24L01" projectFiles="true">
@@ -189,6 +186,7 @@
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>
@@ -203,7 +201,7 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-1fff"/>
-        <property key="poweroptions.powerenable" value="true"/>
+        <property key="poweroptions.powerenable" value="false"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
