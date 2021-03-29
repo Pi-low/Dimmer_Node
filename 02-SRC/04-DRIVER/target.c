@@ -25,8 +25,8 @@ void MCU_Init(void) {
     TMR0 = 5u;
     
     /* TIMER2*/
-    PR2 = 63u;
-    T2CON = 0x05u;
+    PR2 = 255u;
+    T2CON = 0x04u;
     
     /* PWM */
     PWM1CON = 0xC0;
