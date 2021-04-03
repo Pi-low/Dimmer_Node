@@ -11,13 +11,7 @@
 #include <xc.h>
 #include <stdint.h>
 
-#define QUEUE_BUF_SIZE 256U
-#define PIPE0 0U
-#define PIPE1 1U
-#define PIPE2 2U
-#define PIPE3 3U
-#define PIPE4 4U
-#define PIPE5 5U
+#define QUEUE_BUF_SIZE 128U
 
 typedef struct
 {
