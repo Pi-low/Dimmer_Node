@@ -13,25 +13,7 @@ static void enQueue(uint8_t element);
 static uint8_t deQueue(void);
 static void LinearTransiant(uint8_t NewValue, uint8_t OldValue, uint8_t Duration10ms);
 
-//const uint8_t gamma[256] = {
-//0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-//0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
-//1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
-//2,  3,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  5,  5,  5,
-//5,  6,  6,  6,  6,  7,  7,  7,  7,  8,  8,  8,  9,  9,  9, 10,
-//10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
-//17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
-//25, 26, 27, 27, 28, 29, 29, 30, 31, 32, 32, 33, 34, 35, 35, 36,
-//37, 38, 39, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50,
-//51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68,
-//69, 70, 72, 73, 74, 75, 77, 78, 79, 81, 82, 83, 85, 86, 87, 89,
-//90, 92, 93, 95, 96, 98, 99,101,102,104,105,107,109,110,112,114,
-//115,117,119,120,122,124,126,127,129,131,133,135,137,138,140,142,
-//144,146,148,150,152,154,156,158,160,162,164,167,169,171,173,175,
-//177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
-//215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255};
-
-const uint16_t gamma[256] = {
+const uint16_t gamma10[256] = {
      0,   0,   0,   0,   0,   0,   1,   1,   1,   1,   2,   2,   2,   3,   3,   4,
      4,   5,   5,   6,   6,   7,   8,   8,   9,  10,  11,  11,  12,  13,  14,  15,
     16,  17,  18,  19,  20,  22,  23,  24,  25,  26,  28,  29,  30,  32,  33,  35,
@@ -54,7 +36,6 @@ static t_Circular_queue MyQueue;
 static uint8_t CircularBuffer[QUEUE_BUF_SIZE] = {0};
 static uint8_t Click = 0u;
 static uint16_t Click_Duration = 0u;
-static uint8_t NRF_Payload[8] = {0};
 
 void Appl_Init(void) {
     LED_PIN = 0;
@@ -67,15 +48,16 @@ void Appl_Init(void) {
     NRF_SetRFDataRate(NRF_1MBPS);
     NRF_SetRFPower(NRF_PWR_MAX);
     NRF_SetRFChannel(100);
-    NRF_OpenReadingPipe(0, "Node0", 8, 1, 1);
+    NRF_OpenReadingPipe(PIPE0, "Node0", 8, 1, 1);
     NRF_SetART(10, 4);
-    NRF_SetMaskIRQ(NRF_IRQ_RX_DR);
+//    NRF_SetMaskIRQ(NRF_IRQ_RX_DR);
+    NRF_Write_Register(REG_NRF_STATUS, 0x70, 1);
     NRF_StartListening();
 }
 
 static void QueueInit(void)
 {
-    MyQueue.BufferSize = QUEUE_BUF_SIZE - 1u;
+    MyQueue.BufferSize = QUEUE_BUF_SIZE;
     MyQueue.Front = -1;
     MyQueue.Rear = -1;
 }
@@ -196,24 +178,14 @@ void ClickLed(uint16_t DurationMs) {
 
 void APPL_TASK_10MS(void) {
     static uint8_t OldValue = 0;
-    if (NRF_Available(PIPE0)) {
-        ClickLed(100U);
-        NRF_ReadPayload(NRF_Payload, 8U);
-        if (OldValue != NRF_Payload[0]) {
-            LinearTransiant(NRF_Payload[0], OldValue, 50U);
-            OldValue = NRF_Payload[0];
-        }
-        else {
-            
-        }
-    }
-    else {
-    }
-    NRF_StatusHandler();
-    if (KeepDistance(1U) != 0U) {
+
+    LinearTransiant(NRF_Payload[0], OldValue, 50);
+    OldValue = NRF_Payload[0];
+    
+    if (KeepDistance(1) != 0) {
         enQueue(OldValue);
     }
     else {
     }
-    SetPWM1(gamma[deQueue()]);
+    SetPWM1(gamma10[deQueue()]);
 }

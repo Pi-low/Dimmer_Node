@@ -22,7 +22,6 @@ void main (void) {
         /*=========================*/
         if (Tick_1ms >= Task10ms) {
             Task10ms = Tick_1ms + 10U;
-            
             APPL_TASK_10MS();
         }
         else {
