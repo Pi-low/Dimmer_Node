@@ -38,6 +38,10 @@ void MCU_Init(void) {
     PWM1CON = 0xC0;
     PWM2CON = 0xC0;
     
+    /* ADC */
+    ADCON1 = 0xA0;
+    ADCON0 |= 1;
+    
     /* Interrupts on change */
     IOCAN = 0x04; /* RA2 interrupt on falling edge  */
     INTCONbits.IOCIE = 1;
@@ -66,6 +70,16 @@ uint8_t SPI_Exchange(uint8_t Data) {
     SSP1BUF = Data;
     while (!SSP1STATbits.BF);
     return SSP1BUF;
+}
+
+uint16_t AcquireADCChan(uint8_t Channel) {
+    uint16_t ADCres10 = 0;
+    ADCON0 = (Channel << 2) & 0xFD;
+    __delay_us(100);
+    ADCON0 |= 2;
+    while ((ADCON0 & 2) == 0);
+    ADCres10 = (uint16_t)(ADRESH << 8) + ADRESL;
+    return ADCres10;
 }
 
 void __interrupt() ISR (void) {

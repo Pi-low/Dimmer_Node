@@ -18,6 +18,7 @@ extern uint8_t NRF_Payload[];
 void MCU_Init(void);
 uint16_t GetTick_1ms(void);
 uint8_t SPI_Exchange(uint8_t Data);
+uint16_t AcquireADCChan(uint8_t Channel);
 void SetPWM1(uint16_t DutyCycle);
 void SetPWM2(uint16_t DutyCycle);
 
