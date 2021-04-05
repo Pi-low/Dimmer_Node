@@ -34,8 +34,8 @@ void NetworkInit(void) {
 void NetworkManager(void) {
 
     if (NwtFlags.P1_Rx != 0U) {
-        CmdPWM1 = DataPipe[1][DEVICE_ADDR];
-        CmdPWM2 = DataPipe[1][DEVICE_ADDR + 1U];
+        CmdPWM1 = DataPipe[1][DEVICE_ADDR * 2U];
+        CmdPWM2 = DataPipe[1][(DEVICE_ADDR *2U) + 1U];
         NwtFlags.P1_Rx = 0U;
     }
     else {
