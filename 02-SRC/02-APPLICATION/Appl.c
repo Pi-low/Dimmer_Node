@@ -1,9 +1,9 @@
 #include <xc.h>
 #include <stdint.h>
 #include "../01-GLOBALS/common.h"
-#include "Appl.h"
+#include "../03-NETWORK/network.h"
 #include "../04-DRIVER/target.h"
-#include "../04-DRIVER/NRF24L01/NRF24L01.h"
+#include "Appl.h"
 
 static void QueueInit(void);
 static uint8_t IsFull(void);
@@ -42,17 +42,6 @@ void Appl_Init(void) {
     SetPWM1(0);
     SetPWM2(0);
     QueueInit();
-    NRF24L01_Init(SPI_Exchange);
-    NRF_SetCRCLen(1);
-    NRF_SetAddrWidth(5);
-    NRF_SetRFDataRate(NRF_1MBPS);
-    NRF_SetRFPower(NRF_PWR_MAX);
-    NRF_SetRFChannel(100);
-    NRF_OpenReadingPipe(PIPE0, "Node0", 8, 1, 1);
-    NRF_SetART(10, 4);
-//    NRF_SetMaskIRQ(NRF_IRQ_RX_DR);
-    NRF_Write_Register(REG_NRF_STATUS, 0x70, 1);
-    NRF_StartListening();
 }
 
 static void QueueInit(void)
@@ -178,9 +167,12 @@ void ClickLed(uint16_t DurationMs) {
 
 void APPL_TASK_10MS(void) {
     static uint8_t OldValue = 0;
+    uint8_t LED1 = Get_PWM1Cmd();
+    uint8_t D_lay = Get_Slope1();
+    uint8_t LED2 = Get_PWM2Cmd();
 
-    LinearTransiant(NRF_Payload[0], OldValue, 50);
-    OldValue = NRF_Payload[0];
+    LinearTransiant(LED1, OldValue, D_lay);
+    OldValue = LED1;
     
     if (KeepDistance(1) != 0) {
         enQueue(OldValue);
@@ -188,4 +180,5 @@ void APPL_TASK_10MS(void) {
     else {
     }
     SetPWM1(gamma10[deQueue()]);
+    SetPWM2(gamma10[LED2]);
 }

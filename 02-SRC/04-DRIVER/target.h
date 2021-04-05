@@ -13,7 +13,6 @@
 #define LED_PIN LATCbits.LATC4
 
 extern uint16_t Tick_1ms;
-extern uint8_t NRF_Payload[];
 
 void MCU_Init(void);
 uint16_t GetTick_1ms(void);

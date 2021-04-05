@@ -1,11 +1,11 @@
 #include <xc.h>
 #include "../01-GLOBALS/common.h"
-#include "target.h"
-#include "NRF24L01/NRF24L01.h"
 #include "../02-APPLICATION/Appl.h"
+#include "../03-NETWORK/network.h"
+#include "NRF24L01/NRF24L01.h"
+#include "target.h"
 
 uint16_t Tick_1ms;
-uint8_t NRF_Payload[8] = {0};
 
 void MCU_Init(void) {
     Tick_1ms = 0u;
@@ -83,18 +83,21 @@ uint16_t AcquireADCChan(uint8_t Channel) {
 }
 
 void __interrupt() ISR (void) {
+    uint8_t PipeNo = 0;
     if (TMR0IF == 1) {
         TMR0 = 5;
         Tick_1ms++;
         TMR0IF = 0;
     }
     else if (IOCIF == 1) {
-        ClickLed(100U);
-        if (NRF_Available(PIPE0)) {
-            NRF_ReadPayload(NRF_Payload, 8);
-        }
-        NRF_Write_Register(REG_NRF_STATUS, 0x70, 1);
+        ClickLed(50);
+        PipeNo = NRF_Available();
+        NRF_ReadPayload(DataPipe[PipeNo], 8);
+        NwtFlags.Byte = 1U << PipeNo;
         IOCAF = 0;
         IOCIF = 0;
+    }
+    else {
+        
     }
 }
