@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Dim_Node.X.production.sym \
   --cmf=dist/default/production\Dim_Node.X.production.cmf -z -Q16F1509 \
-  -oC:\Users\Nello\AppData\Local\Temp\sa98.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\Nello\AppData\Local\Temp\s22c.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Dim_Node.X.production.map -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ASTACK=020C4h-0216Fh -pstack=STACK -ACODE=00h-07FFhx4 \
   -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 -ACONST=00h-0FFhx32 \
@@ -28,7 +28,7 @@ Linker command line:
   -ASFR31=0F80h-0FEFh -ACONFIG=08007h-08008h -DCONFIG=2 \
   -AIDLOC=08000h-08003h -DIDLOC=2 -DCODE=2 -DSTRCODE=2 -DSTRING=2 -DCONST=2 \
   -DENTRY=2 -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE \
-  -pcinit=CODE -pfunctab=ENTRY -k C:\Users\Nello\AppData\Local\Temp\sa98.o \
+  -pcinit=CODE -pfunctab=ENTRY -k C:\Users\Nello\AppData\Local\Temp\s22c.o \
   dist/default/production\Dim_Node.X.production.o 
 
 Object code version is 3.11
@@ -38,7 +38,7 @@ Machine type is 16F1509
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\Nello\AppData\Local\Temp\sa98.o
+C:\Users\Nello\AppData\Local\Temp\s22c.o
                 end_init                             47       47        2        8       0
                 reset_vec                             0        0        2        0       0
                 config                             8007     8007        2        0       4

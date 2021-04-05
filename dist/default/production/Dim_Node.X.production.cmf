@@ -76,7 +76,7 @@ dataBANK1 BANK1 1 E6 E6 A 1
 clrtext CODE 0 83F 83F C 2
 bssCOMMON COMMON 1 7D 7D 1 1
 config CONFIG 4 8007 8007 2 2
-$C:\Users\Nello\AppData\Local\Temp\sa98.o
+$C:\Users\Nello\AppData\Local\Temp\s22c.o
 reset_vec CODE 0 0 0 2 2
 end_init CODE 0 47 47 2 2
 config CONFIG 4 8007 8007 2 2
@@ -163,61 +163,61 @@ STRING 1800-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Dim_Node.X.production.o
-49 cinit CODE >2928:C:\Users\Nello\AppData\Local\Temp\sa98.s
-49 cinit CODE >2931:C:\Users\Nello\AppData\Local\Temp\sa98.s
-49 cinit CODE >3025:C:\Users\Nello\AppData\Local\Temp\sa98.s
-4A cinit CODE >3026:C:\Users\Nello\AppData\Local\Temp\sa98.s
-4B cinit CODE >3027:C:\Users\Nello\AppData\Local\Temp\sa98.s
-4C cinit CODE >3028:C:\Users\Nello\AppData\Local\Temp\sa98.s
-4D cinit CODE >3029:C:\Users\Nello\AppData\Local\Temp\sa98.s
-4E cinit CODE >3030:C:\Users\Nello\AppData\Local\Temp\sa98.s
-4F cinit CODE >3031:C:\Users\Nello\AppData\Local\Temp\sa98.s
-50 cinit CODE >3032:C:\Users\Nello\AppData\Local\Temp\sa98.s
-51 cinit CODE >3033:C:\Users\Nello\AppData\Local\Temp\sa98.s
-52 cinit CODE >3034:C:\Users\Nello\AppData\Local\Temp\sa98.s
-53 cinit CODE >3035:C:\Users\Nello\AppData\Local\Temp\sa98.s
-54 cinit CODE >3036:C:\Users\Nello\AppData\Local\Temp\sa98.s
-57 cinit CODE >3059:C:\Users\Nello\AppData\Local\Temp\sa98.s
-58 cinit CODE >3060:C:\Users\Nello\AppData\Local\Temp\sa98.s
-59 cinit CODE >3061:C:\Users\Nello\AppData\Local\Temp\sa98.s
-5A cinit CODE >3062:C:\Users\Nello\AppData\Local\Temp\sa98.s
-5B cinit CODE >3063:C:\Users\Nello\AppData\Local\Temp\sa98.s
-5C cinit CODE >3064:C:\Users\Nello\AppData\Local\Temp\sa98.s
-5D cinit CODE >3065:C:\Users\Nello\AppData\Local\Temp\sa98.s
-5E cinit CODE >3066:C:\Users\Nello\AppData\Local\Temp\sa98.s
-5F cinit CODE >3067:C:\Users\Nello\AppData\Local\Temp\sa98.s
-62 cinit CODE >3071:C:\Users\Nello\AppData\Local\Temp\sa98.s
-63 cinit CODE >3075:C:\Users\Nello\AppData\Local\Temp\sa98.s
-64 cinit CODE >3076:C:\Users\Nello\AppData\Local\Temp\sa98.s
-65 cinit CODE >3077:C:\Users\Nello\AppData\Local\Temp\sa98.s
-66 cinit CODE >3078:C:\Users\Nello\AppData\Local\Temp\sa98.s
-67 cinit CODE >3079:C:\Users\Nello\AppData\Local\Temp\sa98.s
-68 cinit CODE >3080:C:\Users\Nello\AppData\Local\Temp\sa98.s
-69 cinit CODE >3081:C:\Users\Nello\AppData\Local\Temp\sa98.s
-6A cinit CODE >3082:C:\Users\Nello\AppData\Local\Temp\sa98.s
-6B cinit CODE >3083:C:\Users\Nello\AppData\Local\Temp\sa98.s
-6C cinit CODE >3087:C:\Users\Nello\AppData\Local\Temp\sa98.s
-6D cinit CODE >3088:C:\Users\Nello\AppData\Local\Temp\sa98.s
-6E cinit CODE >3089:C:\Users\Nello\AppData\Local\Temp\sa98.s
-6F cinit CODE >3090:C:\Users\Nello\AppData\Local\Temp\sa98.s
-70 cinit CODE >3091:C:\Users\Nello\AppData\Local\Temp\sa98.s
-71 cinit CODE >3092:C:\Users\Nello\AppData\Local\Temp\sa98.s
-72 cinit CODE >3093:C:\Users\Nello\AppData\Local\Temp\sa98.s
-73 cinit CODE >3094:C:\Users\Nello\AppData\Local\Temp\sa98.s
-74 cinit CODE >3095:C:\Users\Nello\AppData\Local\Temp\sa98.s
-77 cinit CODE >3099:C:\Users\Nello\AppData\Local\Temp\sa98.s
-78 cinit CODE >3100:C:\Users\Nello\AppData\Local\Temp\sa98.s
-79 cinit CODE >3101:C:\Users\Nello\AppData\Local\Temp\sa98.s
-7A cinit CODE >3102:C:\Users\Nello\AppData\Local\Temp\sa98.s
-7B cinit CODE >3103:C:\Users\Nello\AppData\Local\Temp\sa98.s
-7C cinit CODE >3104:C:\Users\Nello\AppData\Local\Temp\sa98.s
-7D cinit CODE >3105:C:\Users\Nello\AppData\Local\Temp\sa98.s
-7E cinit CODE >3106:C:\Users\Nello\AppData\Local\Temp\sa98.s
-7F cinit CODE >3107:C:\Users\Nello\AppData\Local\Temp\sa98.s
-82 cinit CODE >3113:C:\Users\Nello\AppData\Local\Temp\sa98.s
-82 cinit CODE >3115:C:\Users\Nello\AppData\Local\Temp\sa98.s
-83 cinit CODE >3116:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84 cinit CODE >3117:C:\Users\Nello\AppData\Local\Temp\sa98.s
+49 cinit CODE >2928:C:\Users\Nello\AppData\Local\Temp\s22c.s
+49 cinit CODE >2931:C:\Users\Nello\AppData\Local\Temp\s22c.s
+49 cinit CODE >3025:C:\Users\Nello\AppData\Local\Temp\s22c.s
+4A cinit CODE >3026:C:\Users\Nello\AppData\Local\Temp\s22c.s
+4B cinit CODE >3027:C:\Users\Nello\AppData\Local\Temp\s22c.s
+4C cinit CODE >3028:C:\Users\Nello\AppData\Local\Temp\s22c.s
+4D cinit CODE >3029:C:\Users\Nello\AppData\Local\Temp\s22c.s
+4E cinit CODE >3030:C:\Users\Nello\AppData\Local\Temp\s22c.s
+4F cinit CODE >3031:C:\Users\Nello\AppData\Local\Temp\s22c.s
+50 cinit CODE >3032:C:\Users\Nello\AppData\Local\Temp\s22c.s
+51 cinit CODE >3033:C:\Users\Nello\AppData\Local\Temp\s22c.s
+52 cinit CODE >3034:C:\Users\Nello\AppData\Local\Temp\s22c.s
+53 cinit CODE >3035:C:\Users\Nello\AppData\Local\Temp\s22c.s
+54 cinit CODE >3036:C:\Users\Nello\AppData\Local\Temp\s22c.s
+57 cinit CODE >3059:C:\Users\Nello\AppData\Local\Temp\s22c.s
+58 cinit CODE >3060:C:\Users\Nello\AppData\Local\Temp\s22c.s
+59 cinit CODE >3061:C:\Users\Nello\AppData\Local\Temp\s22c.s
+5A cinit CODE >3062:C:\Users\Nello\AppData\Local\Temp\s22c.s
+5B cinit CODE >3063:C:\Users\Nello\AppData\Local\Temp\s22c.s
+5C cinit CODE >3064:C:\Users\Nello\AppData\Local\Temp\s22c.s
+5D cinit CODE >3065:C:\Users\Nello\AppData\Local\Temp\s22c.s
+5E cinit CODE >3066:C:\Users\Nello\AppData\Local\Temp\s22c.s
+5F cinit CODE >3067:C:\Users\Nello\AppData\Local\Temp\s22c.s
+62 cinit CODE >3071:C:\Users\Nello\AppData\Local\Temp\s22c.s
+63 cinit CODE >3075:C:\Users\Nello\AppData\Local\Temp\s22c.s
+64 cinit CODE >3076:C:\Users\Nello\AppData\Local\Temp\s22c.s
+65 cinit CODE >3077:C:\Users\Nello\AppData\Local\Temp\s22c.s
+66 cinit CODE >3078:C:\Users\Nello\AppData\Local\Temp\s22c.s
+67 cinit CODE >3079:C:\Users\Nello\AppData\Local\Temp\s22c.s
+68 cinit CODE >3080:C:\Users\Nello\AppData\Local\Temp\s22c.s
+69 cinit CODE >3081:C:\Users\Nello\AppData\Local\Temp\s22c.s
+6A cinit CODE >3082:C:\Users\Nello\AppData\Local\Temp\s22c.s
+6B cinit CODE >3083:C:\Users\Nello\AppData\Local\Temp\s22c.s
+6C cinit CODE >3087:C:\Users\Nello\AppData\Local\Temp\s22c.s
+6D cinit CODE >3088:C:\Users\Nello\AppData\Local\Temp\s22c.s
+6E cinit CODE >3089:C:\Users\Nello\AppData\Local\Temp\s22c.s
+6F cinit CODE >3090:C:\Users\Nello\AppData\Local\Temp\s22c.s
+70 cinit CODE >3091:C:\Users\Nello\AppData\Local\Temp\s22c.s
+71 cinit CODE >3092:C:\Users\Nello\AppData\Local\Temp\s22c.s
+72 cinit CODE >3093:C:\Users\Nello\AppData\Local\Temp\s22c.s
+73 cinit CODE >3094:C:\Users\Nello\AppData\Local\Temp\s22c.s
+74 cinit CODE >3095:C:\Users\Nello\AppData\Local\Temp\s22c.s
+77 cinit CODE >3099:C:\Users\Nello\AppData\Local\Temp\s22c.s
+78 cinit CODE >3100:C:\Users\Nello\AppData\Local\Temp\s22c.s
+79 cinit CODE >3101:C:\Users\Nello\AppData\Local\Temp\s22c.s
+7A cinit CODE >3102:C:\Users\Nello\AppData\Local\Temp\s22c.s
+7B cinit CODE >3103:C:\Users\Nello\AppData\Local\Temp\s22c.s
+7C cinit CODE >3104:C:\Users\Nello\AppData\Local\Temp\s22c.s
+7D cinit CODE >3105:C:\Users\Nello\AppData\Local\Temp\s22c.s
+7E cinit CODE >3106:C:\Users\Nello\AppData\Local\Temp\s22c.s
+7F cinit CODE >3107:C:\Users\Nello\AppData\Local\Temp\s22c.s
+82 cinit CODE >3113:C:\Users\Nello\AppData\Local\Temp\s22c.s
+82 cinit CODE >3115:C:\Users\Nello\AppData\Local\Temp\s22c.s
+83 cinit CODE >3116:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84 cinit CODE >3117:C:\Users\Nello\AppData\Local\Temp\s22c.s
 4 intentry CODE >85:C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 6 intentry CODE >86:C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 6 intentry CODE >87:C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
@@ -790,34 +790,34 @@ D26 maintext CODE >36:C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Softwar
 D2C maintext CODE >45:C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/main.c
 D36 maintext CODE >46:C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/main.c
 D3C maintext CODE >48:C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/main.c
-83F clrtext CODE >3042:C:\Users\Nello\AppData\Local\Temp\sa98.s
-83F clrtext CODE >3043:C:\Users\Nello\AppData\Local\Temp\sa98.s
-840 clrtext CODE >3044:C:\Users\Nello\AppData\Local\Temp\sa98.s
-840 clrtext CODE >3045:C:\Users\Nello\AppData\Local\Temp\sa98.s
-841 clrtext CODE >3046:C:\Users\Nello\AppData\Local\Temp\sa98.s
-842 clrtext CODE >3047:C:\Users\Nello\AppData\Local\Temp\sa98.s
-843 clrtext CODE >3048:C:\Users\Nello\AppData\Local\Temp\sa98.s
-844 clrtext CODE >3049:C:\Users\Nello\AppData\Local\Temp\sa98.s
-845 clrtext CODE >3050:C:\Users\Nello\AppData\Local\Temp\sa98.s
-846 clrtext CODE >3051:C:\Users\Nello\AppData\Local\Temp\sa98.s
-847 clrtext CODE >3052:C:\Users\Nello\AppData\Local\Temp\sa98.s
-848 clrtext CODE >3053:C:\Users\Nello\AppData\Local\Temp\sa98.s
-849 clrtext CODE >3054:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84A clrtext CODE >3055:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84B inittext CODE >3008:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84B inittext CODE >3009:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84C inittext CODE >3010:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84C inittext CODE >3011:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84D inittext CODE >3012:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84E inittext CODE >3013:C:\Users\Nello\AppData\Local\Temp\sa98.s
-84F inittext CODE >3014:C:\Users\Nello\AppData\Local\Temp\sa98.s
-850 inittext CODE >3015:C:\Users\Nello\AppData\Local\Temp\sa98.s
-851 inittext CODE >3016:C:\Users\Nello\AppData\Local\Temp\sa98.s
-852 inittext CODE >3017:C:\Users\Nello\AppData\Local\Temp\sa98.s
-853 inittext CODE >3018:C:\Users\Nello\AppData\Local\Temp\sa98.s
-854 inittext CODE >3019:C:\Users\Nello\AppData\Local\Temp\sa98.s
-855 inittext CODE >3020:C:\Users\Nello\AppData\Local\Temp\sa98.s
-856 inittext CODE >3021:C:\Users\Nello\AppData\Local\Temp\sa98.s
+83F clrtext CODE >3042:C:\Users\Nello\AppData\Local\Temp\s22c.s
+83F clrtext CODE >3043:C:\Users\Nello\AppData\Local\Temp\s22c.s
+840 clrtext CODE >3044:C:\Users\Nello\AppData\Local\Temp\s22c.s
+840 clrtext CODE >3045:C:\Users\Nello\AppData\Local\Temp\s22c.s
+841 clrtext CODE >3046:C:\Users\Nello\AppData\Local\Temp\s22c.s
+842 clrtext CODE >3047:C:\Users\Nello\AppData\Local\Temp\s22c.s
+843 clrtext CODE >3048:C:\Users\Nello\AppData\Local\Temp\s22c.s
+844 clrtext CODE >3049:C:\Users\Nello\AppData\Local\Temp\s22c.s
+845 clrtext CODE >3050:C:\Users\Nello\AppData\Local\Temp\s22c.s
+846 clrtext CODE >3051:C:\Users\Nello\AppData\Local\Temp\s22c.s
+847 clrtext CODE >3052:C:\Users\Nello\AppData\Local\Temp\s22c.s
+848 clrtext CODE >3053:C:\Users\Nello\AppData\Local\Temp\s22c.s
+849 clrtext CODE >3054:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84A clrtext CODE >3055:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84B inittext CODE >3008:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84B inittext CODE >3009:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84C inittext CODE >3010:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84C inittext CODE >3011:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84D inittext CODE >3012:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84E inittext CODE >3013:C:\Users\Nello\AppData\Local\Temp\s22c.s
+84F inittext CODE >3014:C:\Users\Nello\AppData\Local\Temp\s22c.s
+850 inittext CODE >3015:C:\Users\Nello\AppData\Local\Temp\s22c.s
+851 inittext CODE >3016:C:\Users\Nello\AppData\Local\Temp\s22c.s
+852 inittext CODE >3017:C:\Users\Nello\AppData\Local\Temp\s22c.s
+853 inittext CODE >3018:C:\Users\Nello\AppData\Local\Temp\s22c.s
+854 inittext CODE >3019:C:\Users\Nello\AppData\Local\Temp\s22c.s
+855 inittext CODE >3020:C:\Users\Nello\AppData\Local\Temp\s22c.s
+856 inittext CODE >3021:C:\Users\Nello\AppData\Local\Temp\s22c.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -862,12 +862,12 @@ _NRF_GetStatus 10E6 0 CODE 0 text46 dist/default/production\Dim_Node.X.productio
 main@Task100ms E2 0 BANK1 1 cstackBANK1 dist/default/production\Dim_Node.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _TMR0 15 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\Nello\AppData\Local\Temp\sa98.o
+___sp 0 0 STACK 2 stack C:\Users\Nello\AppData\Local\Temp\s22c.o
 _main 19D6 0 CODE 0 maintext dist/default/production\Dim_Node.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
 __size_of_NRF24L01_Init 0 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
 __size_of_MCU_Init 0 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
-start 8E 0 CODE 0 init C:\Users\Nello\AppData\Local\Temp\sa98.o
+start 8E 0 CODE 0 init C:\Users\Nello\AppData\Local\Temp\s22c.o
 ___flmul@aexp 46 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
 ___flmul@bexp 47 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
 ___flmul@prod 48 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
@@ -899,12 +899,12 @@ __Hpowerup 0 0 CODE 0 powerup -
 deQueue@element 2F 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
 __end_of_NRF_SetAddrWidth 1692 0 CODE 0 text10 dist/default/production\Dim_Node.X.production.o
 __size_of_NRF_OpenReadingPipe 0 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\sa98.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\sa98.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\sa98.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\sa98.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\sa98.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\sa98.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\s22c.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\s22c.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\s22c.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\s22c.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\s22c.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\Nello\AppData\Local\Temp\s22c.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 __end_of_NRF24L01_Init 107E 0 CODE 0 text19 dist/default/production\Dim_Node.X.production.o
 ___bmul@multiplicand 26 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
@@ -970,8 +970,8 @@ i1NRF_Write_Register@Length 73 0 COMMON 1 cstackCOMMON dist/default/production\D
 NRF_Set_SPI_Handler@SPI_Handler 26 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
 _OPTION_REG 95 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
 NRF_OpenReadingPipe@PipeNo 43 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
-___stackhi 216F 0 ABS 0 - C:\Users\Nello\AppData\Local\Temp\sa98.o
-___stacklo 20C4 0 ABS 0 - C:\Users\Nello\AppData\Local\Temp\sa98.o
+___stackhi 216F 0 ABS 0 - C:\Users\Nello\AppData\Local\Temp\s22c.o
+___stacklo 20C4 0 ABS 0 - C:\Users\Nello\AppData\Local\Temp\s22c.o
 _IsFull 1452 0 CODE 0 text32 dist/default/production\Dim_Node.X.production.o
 NRF_SetRFDataRate@Datarate 34 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
 __end_of_Appl_Init 115A 0 CODE 0 text22 dist/default/production\Dim_Node.X.production.o
@@ -1012,7 +1012,7 @@ NRF_ReadPayload@Payload 7B 0 COMMON 1 cstackCOMMON dist/default/production\Dim_N
 _NRFChip C1 0 BANK1 1 bssBANK1 dist/default/production\Dim_Node.X.production.o
 __size_of_IsFull 0 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
 NRF_ReadPayload@PayloadLength 7A 0 COMMON 1 cstackCOMMON dist/default/production\Dim_Node.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\Nello\AppData\Local\Temp\sa98.o
+___int_sp 0 0 STACK 2 stack C:\Users\Nello\AppData\Local\Temp\s22c.o
 i1SPI_Exchange@Data 70 0 COMMON 1 cstackCOMMON dist/default/production\Dim_Node.X.production.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
@@ -1199,7 +1199,7 @@ __HnvBANK0 0 0 ABS 0 nvBANK0 -
 __size_of_NRF_SetCRCLen 0 0 ABS 0 - dist/default/production\Dim_Node.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
 SPI_Exchange@Data 26 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
-reset_vec 0 0 CODE 0 reset_vec C:\Users\Nello\AppData\Local\Temp\sa98.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\Nello\AppData\Local\Temp\s22c.o
 NRF_OpenReadingPipe@PayloadLength 38 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
 __end_of___xxtofl E7C 0 CODE 0 text33 dist/default/production\Dim_Node.X.production.o
 KeepDistance@retVal 2A 0 BANK0 1 cstackBANK0 dist/default/production\Dim_Node.X.production.o
