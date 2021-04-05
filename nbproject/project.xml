@@ -15,7 +15,7 @@
             <sourceRootList>
                 <sourceRootElem>02-SRC/01-GLOBALS</sourceRootElem>
                 <sourceRootElem>02-SRC/02-APPLICATION</sourceRootElem>
-                <sourceRootElem>02-SRC/03-TRANSPORT</sourceRootElem>
+                <sourceRootElem>02-SRC/03-NETWORK</sourceRootElem>
                 <sourceRootElem>02-SRC/04-DRIVER</sourceRootElem>
             </sourceRootList>
             <confList>
