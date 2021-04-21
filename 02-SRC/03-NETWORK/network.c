@@ -16,8 +16,12 @@ static uint8_t Slope1 = 0U;
 static uint8_t Slope2 = 0U;
 
 void NetworkInit(void) {
-    uint8_t AddrPipe1[5] = {'N', 'o', 'd', 'e', '0'};
-    uint8_t ModuleAddr[5] = {0xBAU, 0x5EU, 0xBAU, 0x11U, DEVICE_ADDR};
+    uint8_t AddrPipe1[5] = {0};
+    uint8_t ModuleAddr[5] = {0};
+    
+    NVM_Read_Buff(EEPROM_BASE_ADDR + 1, AddrPipe1, 5);
+    NVM_Read_Buff(EEPROM_BASE_ADDR + 6, ModuleAddr, 5);
+    
     NRF24L01_Init(SPI_Exchange);
     NRF_SetCRCLen(1U);
     NRF_SetAddrWidth(5U);
@@ -29,6 +33,8 @@ void NetworkInit(void) {
     NRF_SetTxAddr(ModuleAddr);
     NRF_SetART(10U, 4U);
     NRF_StartListening();
+    Slope1 = 50;
+    CmdPWM1 = 255;
 }
 
 void NetworkManager(void) {

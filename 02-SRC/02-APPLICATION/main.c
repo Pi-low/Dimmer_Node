@@ -13,6 +13,7 @@ void main (void) {
     uint16_t Task100ms = 100U;
     uint16_t Task1000ms = 1000U;
     MCU_Init();
+    NVM_Init();
     NetworkInit();
     Appl_Init();
     

@@ -7,6 +7,8 @@
 
 uint16_t Tick_1ms;
 
+static void NWM_Unlock (void);
+
 void MCU_Init(void) {
     Tick_1ms = 0u;
     OSCCON = 0x78;
@@ -52,6 +54,41 @@ void MCU_Init(void) {
     INTCONbits.GIE = 1;
 }
 
+void NVM_Init(void) {
+    uint8_t EE_Init = NVM_Read(EEPROM_BASE_ADDR);
+    uint8_t InitBuffer[NB_WORDS_PER_ROW] = {0};
+    
+    if (NVM_Read(EEPROM_BASE_ADDR) != 0xA5) {
+        /* 1F80 */
+        InitBuffer[0] = 0xA5; /* Present config flag */
+        /* PIPE1 addr
+         * @1F81: 5 bytes */
+        InitBuffer[1] = 'N';
+        InitBuffer[2] = 'o';
+        InitBuffer[3] = 'd';
+        InitBuffer[4] = 'e';
+        InitBuffer[5] = '0';
+        
+        /* PIPE 0
+         * @1F86: 5bytes */
+        InitBuffer[6] = 0xBA;
+        InitBuffer[7] = 0x5E;
+        InitBuffer[8] = 0xBA;
+        InitBuffer[9] = 0x11;
+        InitBuffer[10] = DEVICE_ADDR;
+        
+        /* General config 
+         * @1F8B */
+        InitBuffer[11] = 100; /* Operating frequency */
+        
+        
+        
+        NVM_Write_Row(EEPROM_BASE_ADDR, InitBuffer, 12);
+    }
+    else {
+    }
+}
+
 uint16_t GetTick_1ms(void) {
     return Tick_1ms;
 }
@@ -80,6 +117,70 @@ uint16_t AcquireADCChan(uint8_t Channel) {
     while ((ADCON0 & 2) == 0);
     ADCres10 = (uint16_t)(ADRESH << 8) + ADRESL;
     return ADCres10;
+}
+
+uint8_t NVM_Read(uint16_t address) {
+    PMCON1bits.CFGS = 0;
+    PMADRH = (uint8_t) (address >> 8);
+    PMADRL = (uint8_t) address;
+    PMCON1bits.RD = 1;
+    NOP();
+    NOP();
+    return PMDATL;
+}
+
+void NVM_Read_Buff(uint16_t address, uint8_t RBuff[], uint8_t length) {
+    uint8_t i = 0;
+    for (i = 0;  i < length; i++) {
+        RBuff[i] = NVM_Read(address + i);
+    }
+}
+
+void NWM_Unlock(void) {
+    PMCON2 = 0x55;
+    PMCON2 = 0xAA;
+    PMCON1bits.WR = 1;
+    NOP();
+    NOP();
+}
+
+void NVM_Erase(uint16_t address) {
+    di(); /* Disable interrupt */
+    PMCON1bits.CFGS = 0;
+    PMADRH = (uint8_t) (address >> 8);
+    PMADRL = (uint8_t) address;
+    PMCON1bits.FREE = 1;
+    PMCON1bits.WREN = 1;
+    NWM_Unlock(); /* Erase takes approx 2ms */
+    PMCON1bits.WREN = 0;
+    ei(); /* Enable interrupt */
+}
+
+void NVM_Write_Row(uint16_t address, uint8_t WriteBuff[], uint8_t Length) {
+    uint8_t i = 0;
+    if (Length < NB_WORDS_PER_ROW && !(address % NB_WORDS_PER_ROW)) {
+        di(); /* Disable interrupt */
+        PMADRH = (uint8_t) (address >> 8);
+        PMADRL = (uint8_t) address;
+        PMCON1bits.CFGS = 0;
+        PMCON1bits.WREN = 1;
+        PMCON1bits.LWLO = 1;
+        
+        /* Load latched */
+        while (i < Length) {
+            PMDATL = WriteBuff[i];
+            PMDATH = 0;
+            NWM_Unlock();
+            i++;
+            PMADRL += (i < Length);
+        }
+        PMCON1bits.LWLO = 0;
+        NWM_Unlock(); /* Write all latched into EEPROM */
+        PMCON1bits.WREN = 0;
+        ei(); /* Enable interrupt */
+    }
+    else {
+    }
 }
 
 void __interrupt() ISR (void) {

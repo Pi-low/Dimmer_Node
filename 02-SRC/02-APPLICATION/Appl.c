@@ -39,8 +39,6 @@ static uint16_t Click_Duration = 0u;
 
 void Appl_Init(void) {
     LED_PIN = 0;
-    SetPWM1(0);
-    SetPWM2(0);
     QueueInit();
 }
 
