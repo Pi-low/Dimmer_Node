@@ -37,6 +37,8 @@ void MCU_Init(void) {
     T2CON = 0x04;
     
     /* PWM */
+    SetPWM1(0);
+    SetPWM2(0);
     PWM1CON = 0xC0;
     PWM2CON = 0xC0;
     
