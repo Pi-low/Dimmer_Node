@@ -99,6 +99,15 @@ void NetworkManager(void) {
         NwtFlags.P0_Rx = 0U;
     } else {
     }
+    
+    if (NwtFlags.Tx_Dat != 0) {
+        NRF_StopListening();
+        NRF_WritePayload(DataTx, 8);
+        NRF_StartListening();
+        NwtFlags.Tx_Dat = 0;
+    }
+    else {
+    }
 }
 
 uint8_t Get_PWM1Cmd(void) {

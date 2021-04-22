@@ -12,6 +12,7 @@ void main (void) {
     uint16_t Task10ms = 10U;
     uint16_t Task100ms = 100U;
     uint16_t Task1000ms = 1000U;
+    uint16_t PreviousTick = 0;
     MCU_Init();
     NVM_Init();
     NetworkInit();
@@ -19,7 +20,10 @@ void main (void) {
     
     while (1U) {
         Task_LedManager();
-        NetworkManager();
+        if (PreviousTick != Tick_1ms) {
+            NetworkManager();
+            PreviousTick = Tick_1ms;
+        }
         /*=========================*/
         /*        TASK 10MS        */
         /*=========================*/
@@ -35,7 +39,7 @@ void main (void) {
         /*=========================*/
         if (Tick_1ms >= Task100ms) {
             Task100ms = Tick_1ms + 100U;
-            
+            RefreshVoltage(AcquireADCChan(8));
         }
         else {
         }
