@@ -16,21 +16,33 @@ static uint8_t Slope1 = 0U;
 static uint8_t Slope2 = 0U;
 
 void NetworkInit(void) {
+    uint8_t i = 0;
+    uint8_t AddrPipe0[5] = {0};
     uint8_t AddrPipe1[5] = {0};
-    uint8_t ModuleAddr[5] = {0};
+    uint8_t TxAddr[5] = {0};
+    uint8_t EEPROM_Row[NB_WORDS_PER_ROW] = {0};
     
-    NVM_Read_Buff(EEPROM_BASE_ADDR + 1, AddrPipe1, 5);
-    NVM_Read_Buff(EEPROM_BASE_ADDR + 6, ModuleAddr, 5);
+    NVM_Read_Buff(EEPROM_BASE_ADDR, EEPROM_Row, NB_WORDS_PER_ROW);
+    
+    for (i = 0; i < 5; i++) {
+        if (i < 4) {
+            AddrPipe1[i] = EEPROM_Row[i + 6];
+            TxAddr[i] = EEPROM_Row[i + 10];
+        }
+        AddrPipe0[i] = EEPROM_Row[i + 1];
+    }
+    AddrPipe1[4] = EEPROM_Row[15];
+    TxAddr[4] = EEPROM_Row[15];
     
     NRF24L01_Init(SPI_Exchange);
     NRF_SetCRCLen(1U);
     NRF_SetAddrWidth(5U);
     NRF_SetRFDataRate(NRF_1MBPS);
     NRF_SetRFPower(NRF_PWR_MAX);
-    NRF_SetRFChannel(100U);
-    NRF_OpenReadingPipe(PIPE0, ModuleAddr, 8U, 1U, 1U);
+    NRF_SetRFChannel(EEPROM_Row[14]);
+    NRF_OpenReadingPipe(PIPE0, AddrPipe0, 8U, 1U, 1U);
     NRF_OpenReadingPipe(PIPE1, AddrPipe1, 8U, 0U, 1U);
-    NRF_SetTxAddr(ModuleAddr);
+    NRF_SetTxAddr(TxAddr);
     NRF_SetART(10U, 4U);
     NRF_StartListening();
     Slope1 = 50;
@@ -38,23 +50,51 @@ void NetworkInit(void) {
 }
 
 void NetworkManager(void) {
-
-    if (NwtFlags.P1_Rx != 0U) {
-        CmdPWM1 = DataPipe[1][DEVICE_ADDR * 2U];
-        CmdPWM2 = DataPipe[1][(DEVICE_ADDR *2U) + 1U];
+    /* Broadcast address */
+    if (NwtFlags.P0_Rx != 0U) {
+        CmdPWM1 = DataPipe[0][DEVICE_ADDR * 2U];
+        CmdPWM2 = DataPipe[0][(DEVICE_ADDR * 2U) + 1U];
         NwtFlags.P1_Rx = 0U;
     }
     else {
-        
     }
     
-    if (NwtFlags.P0_Rx != 0U) {
-        if (DataPipe[0][0] == 0x07U) {
-            CmdPWM1 = DataPipe[0][1];
-            Slope1 = DataPipe[0][2];
-            CmdPWM2 = DataPipe[0][3];
-            Slope2 = DataPipe[0][4];
-        } else {
+    /* Node address */
+    if (NwtFlags.P1_Rx != 0U) {
+        switch (DataPipe[1][0]) {
+            /* Set lights */
+            case 0x01:
+                CmdPWM1 = DataPipe[0][1];
+                Slope1 = DataPipe[0][2];
+                CmdPWM2 = DataPipe[0][3];
+                Slope2 = DataPipe[0][4];
+                break;
+                
+            /* Read lights */
+            case 0x02:
+                DataTx[0] = 0x02;
+                DataTx[1] = CmdPWM1;
+                DataTx[2] = Slope1;
+                DataTx[3] = CmdPWM2;
+                DataTx[4] = Slope2;
+                DataTx[5] = 0;
+                DataTx[6] = 0;
+                DataTx[7] = 0;
+                NwtFlags.Tx_Dat = 1;
+                break;
+                
+            /* Read Voltage */    
+            case 0x03:
+                DataTx[0] = 0x03;
+                DataTx[1] = (uint8_t) GetVoltage();
+                DataTx[2] = (uint8_t) (GetVoltage() >> 8);
+                DataTx[3] = 0;
+                DataTx[4] = 0;
+                DataTx[5] = 0;
+                DataTx[6] = 0;
+                DataTx[7] = 0;
+                NwtFlags.Tx_Dat = 1;
+                break;
         }
         NwtFlags.P0_Rx = 0U;
     } else {

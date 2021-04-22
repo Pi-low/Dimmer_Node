@@ -63,29 +63,36 @@ void NVM_Init(void) {
     if (NVM_Read(EEPROM_BASE_ADDR) != 0xA5) {
         /* 1F80 */
         InitBuffer[0] = 0xA5; /* Present config flag */
-        /* PIPE1 addr
+        /* PIPE0 addr
          * @1F81: 5 bytes */
-        InitBuffer[1] = 'N';
-        InitBuffer[2] = 'o';
-        InitBuffer[3] = 'd';
-        InitBuffer[4] = 'e';
-        InitBuffer[5] = '0';
+        InitBuffer[1] = 'B';
+        InitBuffer[2] = 'R';
+        InitBuffer[3] = 'O';
+        InitBuffer[4] = 'A';
+        InitBuffer[5] = 'D';
         
-        /* PIPE 0
-         * @1F86: 5bytes */
-        InitBuffer[6] = 0xBA;
-        InitBuffer[7] = 0x5E;
-        InitBuffer[8] = 0xBA;
-        InitBuffer[9] = 0x11;
-        InitBuffer[10] = DEVICE_ADDR;
+        /* PIPE 1
+         * @1F86: 4bytes */
+        InitBuffer[6] = 'N';
+        InitBuffer[7] = 'O';
+        InitBuffer[8] = 'D';
+        InitBuffer[9] = 'E';
         
-        /* General config 
-         * @1F8B */
-        InitBuffer[11] = 100; /* Operating frequency */
+        /* TX ADDR 
+         * @1F8B: 4bytes */
+        InitBuffer[10] = 'L';
+        InitBuffer[11] = 'E';
+        InitBuffer[12] = 'D';
+        InitBuffer[13] = 'X';
+        
+        /* General config
+         * @1F8E */
+        InitBuffer[14] = 100;
+        InitBuffer[15] = DEVICE_ADDR;
         
         
         
-        NVM_Write_Row(EEPROM_BASE_ADDR, InitBuffer, 12);
+        NVM_Write_Row(EEPROM_BASE_ADDR, InitBuffer, 16);
     }
     else {
     }
