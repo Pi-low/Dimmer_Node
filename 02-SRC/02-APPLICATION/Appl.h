@@ -24,5 +24,7 @@ void Appl_Init(void);
 void Task_LedManager(void);
 void ClickLed(uint16_t DurationMs);
 void APPL_TASK_10MS(void);
+void RefreshVoltage(uint16_t Value);
+uint16_t GetVoltage(void);
 #endif	/* APPL_H */
 

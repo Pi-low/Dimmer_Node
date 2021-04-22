@@ -36,6 +36,7 @@ static t_Circular_queue MyQueue;
 static uint8_t CircularBuffer[QUEUE_BUF_SIZE] = {0};
 static uint8_t Click = 0u;
 static uint16_t Click_Duration = 0u;
+static uint16_t SysVoltage = 0;
 
 void Appl_Init(void) {
     LED_PIN = 0;
@@ -179,4 +180,12 @@ void APPL_TASK_10MS(void) {
     }
     SetPWM1(gamma10[deQueue()]);
     SetPWM2(gamma10[LED2]);
+}
+
+void RefreshVoltage(uint16_t Value) {
+    SysVoltage = Value;
+}
+
+uint16_t GetVoltage(void) {
+    return SysVoltage;
 }
