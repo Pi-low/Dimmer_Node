@@ -3,39 +3,43 @@
 [d edition pro ]
 [d chip 16F1509 ]
 [d frameptr 6 ]
-"40 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+"41 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _Appl_Init Appl_Init `(v  1 e 1 0 ]
-"45
+"46
 [v _QueueInit QueueInit `(v  1 s 1 QueueInit ]
-"52
+"53
 [v _IsFull IsFull `(uc  1 s 1 IsFull ]
-"57
+"58
 [v _IsEmpty IsEmpty `(uc  1 s 1 IsEmpty ]
-"62
+"63
 [v _KeepDistance KeepDistance `(uc  1 s 1 KeepDistance ]
-"82
+"83
 [v _enQueue enQueue `(v  1 s 1 enQueue ]
-"93
+"94
 [v _deQueue deQueue `(uc  1 s 1 deQueue ]
-"112
+"113
 [v _LinearTransiant LinearTransiant `(v  1 s 1 LinearTransiant ]
-"146
+"147
 [v _Task_LedManager Task_LedManager `(v  1 e 1 0 ]
-"161
+"162
 [v _ClickLed ClickLed `(v  1 e 1 0 ]
-"166
+"167
 [v _APPL_TASK_10MS APPL_TASK_10MS `(v  1 e 1 0 ]
+"185
+[v _RefreshVoltage RefreshVoltage `(v  1 e 1 0 ]
+"189
+[v _GetVoltage GetVoltage `(us  1 e 2 0 ]
 "11 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/main.c
 [v _main main `(v  1 e 1 0 ]
 "18 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/03-NETWORK/network.c
 [v _NetworkInit NetworkInit `(v  1 e 1 0 ]
-"40
+"52
 [v _NetworkManager NetworkManager `(v  1 e 1 0 ]
-"64
+"113
 [v _Get_PWM1Cmd Get_PWM1Cmd `(uc  1 e 1 0 ]
-"68
+"117
 [v _Get_PWM2Cmd Get_PWM2Cmd `(uc  1 e 1 0 ]
-"72
+"121
 [v _Get_Slope1 Get_Slope1 `(uc  1 e 1 0 ]
 "11 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/NRF24L01/NRF24L01.c
 [v _NRF_Set_SPI_Handler NRF_Set_SPI_Handler `(v  1 e 1 0 ]
@@ -48,6 +52,8 @@
 [v _NRF_Read_Register NRF_Read_Register `(uc  1 s 1 NRF_Read_Register ]
 "47
 [v _NRF_ReadPayload NRF_ReadPayload `(v  1 e 1 0 ]
+"61
+[v _NRF_WritePayload NRF_WritePayload `(v  1 e 1 0 ]
 "76
 [v _NRF_OpenReadingPipe NRF_OpenReadingPipe `(v  1 e 1 0 ]
 "103
@@ -70,6 +76,8 @@
 [v _NRF_SetART NRF_SetART `(v  1 e 1 0 ]
 "189
 [v _NRF_StartListening NRF_StartListening `(v  1 e 1 0 ]
+"198
+[v _NRF_StopListening NRF_StopListening `(v  1 e 1 0 ]
 "206
 [v _NRF_Available NRF_Available `(uc  1 e 1 0 ]
 "217
@@ -78,22 +86,24 @@
 [v _MCU_Init MCU_Init `(v  1 e 1 0 ]
 "59
 [v _NVM_Init NVM_Init `(v  1 e 1 0 ]
-"98
+"105
 [v _SetPWM1 SetPWM1 `(v  1 e 1 0 ]
-"103
+"110
 [v _SetPWM2 SetPWM2 `(v  1 e 1 0 ]
-"108
+"115
 [v _SPI_Exchange SPI_Exchange `(uc  1 e 1 0 ]
 [v i1_SPI_Exchange SPI_Exchange `(uc  1 e 1 0 ]
-"124
+"121
+[v _AcquireADCChan AcquireADCChan `(us  1 e 2 0 ]
+"131
 [v _NVM_Read NVM_Read `(uc  1 e 1 0 ]
-"134
-[v _NVM_Read_Buff NVM_Read_Buff `(v  1 e 1 0 ]
 "141
+[v _NVM_Read_Buff NVM_Read_Buff `(v  1 e 1 0 ]
+"148
 [v _NWM_Unlock NWM_Unlock `(v  1 e 1 0 ]
-"161
+"168
 [v _NVM_Write_Row NVM_Write_Row `(v  1 e 1 0 ]
-"188
+"195
 [v _ISR ISR `II(v  1 e 1 0 ]
 "43 C:\Program Files (x86)\Microchip\xc8\pic\sources\c99\common\fltol.c
 [v ___fltol __fltol `(l  1 e 4 0 ]
@@ -113,27 +123,32 @@
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
 "16 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _gamma10 gamma10 `DC[256]us  1 e 512 0 ]
-[s S59 . 6 `s 1 Front 2 0 `s 1 Rear 2 2 `us 1 BufferSize 2 4 ]
+[s S70 . 6 `s 1 Front 2 0 `s 1 Rear 2 2 `us 1 BufferSize 2 4 ]
 "35
-[v _MyQueue MyQueue `S59  1 s 6 MyQueue ]
+[v _MyQueue MyQueue `S70  1 s 6 MyQueue ]
 "36
 [v _CircularBuffer CircularBuffer `[128]uc  1 s 128 CircularBuffer ]
 "37
 [v _Click Click `uc  1 s 1 Click ]
 "38
 [v _Click_Duration Click_Duration `us  1 s 2 Click_Duration ]
+"39
+[v _SysVoltage SysVoltage `us  1 s 2 SysVoltage ]
 "9 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/03-NETWORK/network.c
 [v _DataPipe DataPipe `[2][8]uc  1 e 16 0 ]
-[s S163 . 1 `uc 1 P0_Rx 1 0 :1:0 
+"10
+[v _DataTx DataTx `[8]uc  1 e 8 0 ]
+[s S178 . 1 `uc 1 P0_Rx 1 0 :1:0 
 `uc 1 P1_Rx 1 0 :1:1 
 `uc 1 P2_Rx 1 0 :1:2 
 `uc 1 P3_Rx 1 0 :1:3 
 `uc 1 P4_Rx 1 0 :1:4 
 `uc 1 P5_Rx 1 0 :1:5 
+`uc 1 Tx_Dat 1 0 :1:6 
 ]
 "11
-[u S170 . 1 `uc 1 Byte 1 0 `S163 1 . 1 0 ]
-[v _NwtFlags NwtFlags `S170  1 e 1 0 ]
+[u S186 . 1 `uc 1 Byte 1 0 `S178 1 . 1 0 ]
+[v _NwtFlags NwtFlags `S186  1 e 1 0 ]
 "13
 [v _CmdPWM1 CmdPWM1 `uc  1 s 1 CmdPWM1 ]
 "14
@@ -144,10 +159,10 @@
 [v _Slope2 Slope2 `uc  1 s 1 Slope2 ]
 "5 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/NRF24L01/NRF24L01.c
 [v _p_NRF_SPI_Exchange p_NRF_SPI_Exchange `*.37(uc  1 s 2 p_NRF_SPI_Exchange ]
-[s S273 . 6 `uc 1 PAY_LEN 1 0 `[5]uc 1 PIPE_ADDR 5 1 ]
+[s S308 . 6 `uc 1 PAY_LEN 1 0 `[5]uc 1 PIPE_ADDR 5 1 ]
 "6
-[v _NFR_RxPipes NFR_RxPipes `[6]S273  1 s 36 NFR_RxPipes ]
-[s S276 . 1 `uc 1 PRIM_RX 1 0 :1:0 
+[v _NFR_RxPipes NFR_RxPipes `[6]S308  1 s 36 NFR_RxPipes ]
+[s S311 . 1 `uc 1 PRIM_RX 1 0 :1:0 
 `uc 1 PWR_UP 1 0 :1:1 
 `uc 1 CRCO 1 0 :1:2 
 `uc 1 EN_CRC 1 0 :1:3 
@@ -156,52 +171,52 @@
 `uc 1 MASK_RX_DR 1 0 :1:6 
 ]
 "7
-[u S284 . 1 `uc 1 byte 1 0 `S276 1 s 1 0 ]
-[s S287 . 1 `uc 1 AW 1 0 :2:0 
+[u S319 . 1 `uc 1 byte 1 0 `S311 1 s 1 0 ]
+[s S322 . 1 `uc 1 AW 1 0 :2:0 
 ]
-[u S289 . 1 `uc 1 byte 1 0 `S287 1 s 1 0 ]
-[s S292 . 1 `uc 1 ARC 1 0 :4:0 
+[u S324 . 1 `uc 1 byte 1 0 `S322 1 s 1 0 ]
+[s S327 . 1 `uc 1 ARC 1 0 :4:0 
 `uc 1 ARD 1 0 :4:4 
 ]
-[u S295 . 1 `uc 1 byte 1 0 `S292 1 s 1 0 ]
-[s S298 . 1 `uc 1 RF_CH 1 0 :7:0 
+[u S330 . 1 `uc 1 byte 1 0 `S327 1 s 1 0 ]
+[s S333 . 1 `uc 1 RF_CH 1 0 :7:0 
 ]
-[u S300 . 1 `uc 1 byte 1 0 `S298 1 s 1 0 ]
-[s S303 . 1 `uc 1 LNA_HCURR 1 0 :1:0 
+[u S335 . 1 `uc 1 byte 1 0 `S333 1 s 1 0 ]
+[s S338 . 1 `uc 1 LNA_HCURR 1 0 :1:0 
 `uc 1 RF_PWR 1 0 :2:1 
 `uc 1 RF_DR 1 0 :1:3 
 `uc 1 PLL_LOCK 1 0 :1:4 
 ]
-[u S308 . 1 `uc 1 byte 1 0 `S303 1 s 1 0 ]
-[s S311 . 1 `uc 1 TX_FULL 1 0 :1:0 
+[u S343 . 1 `uc 1 byte 1 0 `S338 1 s 1 0 ]
+[s S346 . 1 `uc 1 TX_FULL 1 0 :1:0 
 `uc 1 RX_P_NO 1 0 :3:1 
 `uc 1 MAX_RT 1 0 :1:4 
 `uc 1 TX_DS 1 0 :1:5 
 `uc 1 RX_DR 1 0 :1:6 
 ]
-[u S317 . 1 `uc 1 byte 1 0 `S311 1 s 1 0 ]
-[s S320 . 1 `uc 1 ARC_CNT 1 0 :4:0 
+[u S352 . 1 `uc 1 byte 1 0 `S346 1 s 1 0 ]
+[s S355 . 1 `uc 1 ARC_CNT 1 0 :4:0 
 `uc 1 PLOS_CNT 1 0 :4:4 
 ]
-[u S323 . 1 `uc 1 byte 1 0 `S320 1 s 1 0 ]
-[s S326 . 1 `uc 1 RX_EMPTY 1 0 :1:0 
+[u S358 . 1 `uc 1 byte 1 0 `S355 1 s 1 0 ]
+[s S361 . 1 `uc 1 RX_EMPTY 1 0 :1:0 
 `uc 1 RX_FULL 1 0 :1:1 
 `uc 1 reserved 1 0 :2:2 
 `uc 1 TX_EMPTY 1 0 :1:4 
 `uc 1 TX_FULL 1 0 :1:5 
 `uc 1 REUSE 1 0 :1:6 
 ]
-[u S333 . 1 `uc 1 byte 1 0 `S326 1 s 1 0 ]
-[s S336 . 1 `uc 1 EN_DYN_ACK 1 0 :1:0 
+[u S368 . 1 `uc 1 byte 1 0 `S361 1 s 1 0 ]
+[s S371 . 1 `uc 1 EN_DYN_ACK 1 0 :1:0 
 `uc 1 EN_ACK_PAY 1 0 :1:1 
 `uc 1 EN_DLP 1 0 :1:2 
 ]
-[u S340 . 1 `uc 1 byte 1 0 `S336 1 s 1 0 ]
-[s S343 . 14 `S284 1 CONFIG 1 0 `S289 1 AW 1 1 `S295 1 SETUP_RETR 1 2 `S300 1 RF_CH 1 3 `S308 1 RF_SETUP 1 4 `S317 1 STATUS 1 5 `S323 1 OBSERVE_TX 1 6 `S333 1 FIFO_STATUS 1 7 `S340 1 FEATURE 1 8 `[5]uc 1 TX_ADDR 5 9 ]
-[v _NRFChip NRFChip `S343  1 s 14 NRFChip ]
+[u S375 . 1 `uc 1 byte 1 0 `S371 1 s 1 0 ]
+[s S378 . 14 `S319 1 CONFIG 1 0 `S324 1 AW 1 1 `S330 1 SETUP_RETR 1 2 `S335 1 RF_CH 1 3 `S343 1 RF_SETUP 1 4 `S352 1 STATUS 1 5 `S358 1 OBSERVE_TX 1 6 `S368 1 FIFO_STATUS 1 7 `S375 1 FEATURE 1 8 `[5]uc 1 TX_ADDR 5 9 ]
+[v _NRFChip NRFChip `S378  1 s 14 NRFChip ]
 "8 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 [v _Tick_1ms Tick_1ms `us  1 e 2 0 ]
-[s S571 . 1 `uc 1 IOCIF 1 0 :1:0 
+[s S606 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 IOCIE 1 0 :1:3 
@@ -211,13 +226,13 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "375 C:\Program Files (x86)\Microchip\xc8\pic\include\proc\pic16f1509.h
-[s S580 . 1 `uc 1 . 1 0 :2:0 
+[s S615 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 T0IE 1 0 :1:5 
 ]
-[u S585 . 1 `S571 1 . 1 0 `S580 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES585  1 e 1 @11 ]
+[u S620 . 1 `S606 1 . 1 0 `S615 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES620  1 e 1 @11 ]
 "722
 [v _TMR0 TMR0 `VEuc  1 e 1 @21 ]
 "951
@@ -242,7 +257,7 @@
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
 "1772
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
-[s S63 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S74 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -252,8 +267,8 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "1968
-[u S72 . 1 `S63 1 . 1 0 ]
-[v _LATCbits LATCbits `VES72  1 e 1 @270 ]
+[u S83 . 1 `S74 1 . 1 0 ]
+[v _LATCbits LATCbits `VES83  1 e 1 @270 ]
 "2546
 [v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
 "2593
@@ -268,7 +283,7 @@
 [v _PMDATL PMDATL `VEuc  1 e 1 @403 ]
 "2762
 [v _PMDATH PMDATH `VEuc  1 e 1 @404 ]
-[s S654 . 1 `uc 1 RD 1 0 :1:0 
+[s S689 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -277,15 +292,15 @@
 `uc 1 CFGS 1 0 :1:6 
 ]
 "2798
-[u S662 . 1 `S654 1 . 1 0 ]
-[v _PMCON1bits PMCON1bits `VES662  1 e 1 @405 ]
+[u S697 . 1 `S689 1 . 1 0 ]
+[v _PMCON1bits PMCON1bits `VES697  1 e 1 @405 ]
 "2838
 [v _PMCON2 PMCON2 `VEuc  1 e 1 @406 ]
 "3248
 [v _SSP1BUF SSP1BUF `VEuc  1 e 1 @529 ]
 "3362
 [v _SSP1STAT SSP1STAT `VEuc  1 e 1 @532 ]
-[s S629 . 1 `uc 1 BF 1 0 :1:0 
+[s S664 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -295,8 +310,8 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "3384
-[u S638 . 1 `S629 1 . 1 0 ]
-[v _SSP1STATbits SSP1STATbits `VES638  1 e 1 @532 ]
+[u S673 . 1 `S664 1 . 1 0 ]
+[v _SSP1STATbits SSP1STATbits `VES673  1 e 1 @532 ]
 "3484
 [v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @533 ]
 "3990
@@ -322,45 +337,82 @@
 "11 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/main.c
 [v _main main `(v  1 e 1 0 ]
 {
+"15
+[v main@PreviousTick PreviousTick `us  1 a 2 54 ]
 "14
-[v main@Task1000ms Task1000ms `us  1 a 2 13 ]
+[v main@Task1000ms Task1000ms `us  1 a 2 52 ]
 "13
-[v main@Task100ms Task100ms `us  1 a 2 11 ]
+[v main@Task100ms Task100ms `us  1 a 2 50 ]
 "12
-[v main@Task10ms Task10ms `us  1 a 2 9 ]
-"53
+[v main@Task10ms Task10ms `us  1 a 2 48 ]
+"57
 } 0
-"146 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+"147 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _Task_LedManager Task_LedManager `(v  1 e 1 0 ]
 {
-"147
+"148
 [v Task_LedManager@Timeout Timeout `us  1 s 2 Timeout ]
-"159
+"160
 } 0
-"40 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/03-NETWORK/network.c
+"185
+[v _RefreshVoltage RefreshVoltage `(v  1 e 1 0 ]
+{
+[v RefreshVoltage@Value Value `us  1 p 2 11 ]
+"187
+} 0
+"52 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/03-NETWORK/network.c
 [v _NetworkManager NetworkManager `(v  1 e 1 0 ]
 {
-"62
+"111
 } 0
-"18
+"61 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/NRF24L01/NRF24L01.c
+[v _NRF_WritePayload NRF_WritePayload `(v  1 e 1 0 ]
+{
+[v NRF_WritePayload@Payload Payload `*.5uc  1 a 1 wreg ]
+"63
+[v NRF_WritePayload@i i `uc  1 a 1 10 ]
+"61
+[v NRF_WritePayload@Payload Payload `*.5uc  1 a 1 wreg ]
+[v NRF_WritePayload@PayloadLength PayloadLength `uc  1 p 1 6 ]
+"64
+[v NRF_WritePayload@Payload Payload `*.5uc  1 a 1 9 ]
+"74
+} 0
+"198
+[v _NRF_StopListening NRF_StopListening `(v  1 e 1 0 ]
+{
+"204
+} 0
+"189 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+[v _GetVoltage GetVoltage `(us  1 e 2 0 ]
+{
+"191
+} 0
+"18 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/03-NETWORK/network.c
 [v _NetworkInit NetworkInit `(v  1 e 1 0 ]
 {
-"20
-[v NetworkInit@ModuleAddr ModuleAddr `[5]uc  1 a 5 42 ]
-"19
+"23
+[v NetworkInit@EEPROM_Row EEPROM_Row `[32]uc  1 a 32 0 ]
+"22
+[v NetworkInit@TxAddr TxAddr `[5]uc  1 a 5 42 ]
+"21
 [v NetworkInit@AddrPipe1 AddrPipe1 `[5]uc  1 a 5 37 ]
-"38
+"20
+[v NetworkInit@AddrPipe0 AddrPipe0 `[5]uc  1 a 5 32 ]
+"19
+[v NetworkInit@i i `uc  1 a 1 47 ]
+"50
 } 0
-"134 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
+"141 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 [v _NVM_Read_Buff NVM_Read_Buff `(v  1 e 1 0 ]
 {
-"135
+"142
 [v NVM_Read_Buff@i i `uc  1 a 1 13 ]
-"134
+"141
 [v NVM_Read_Buff@address address `us  1 p 2 7 ]
 [v NVM_Read_Buff@RBuff RBuff `*.4uc  1 p 1 9 ]
 [v NVM_Read_Buff@length length `uc  1 p 1 10 ]
-"139
+"146
 } 0
 "189 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/NRF24L01/NRF24L01.c
 [v _NRF_StartListening NRF_StartListening `(v  1 e 1 0 ]
@@ -506,20 +558,20 @@
 {
 [v NRF_Read_Register@Register Register `uc  1 a 1 wreg ]
 "37
-[v NRF_Read_Register@i i `uc  1 a 1 13 ]
+[v NRF_Read_Register@i i `uc  1 a 1 17 ]
 "35
 [v NRF_Read_Register@Register Register `uc  1 a 1 wreg ]
-[v NRF_Read_Register@Bytes Bytes `*.4uc  1 p 1 6 ]
-[v NRF_Read_Register@Length Length `uc  1 p 1 7 ]
+[v NRF_Read_Register@Bytes Bytes `*.39uc  1 p 2 6 ]
+[v NRF_Read_Register@Length Length `uc  1 p 1 8 ]
 "37
-[v NRF_Read_Register@Register Register `uc  1 a 1 12 ]
+[v NRF_Read_Register@Register Register `uc  1 a 1 16 ]
 "45
 } 0
-"108 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
+"115 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 [v _SPI_Exchange SPI_Exchange `(uc  1 e 1 0 ]
 {
 [v SPI_Exchange@Data Data `uc  1 p 1 5 ]
-"112
+"119
 } 0
 "16 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/NRF24L01/NRF24L01.c
 [v _NRF24L01_Init NRF24L01_Init `(v  1 e 1 0 ]
@@ -538,109 +590,120 @@
 {
 "61
 [v NVM_Init@InitBuffer InitBuffer `[32]uc  1 a 32 14 ]
-"92
+"99
 } 0
-"161
+"168
 [v _NVM_Write_Row NVM_Write_Row `(v  1 e 1 0 ]
 {
-"162
+"169
 [v NVM_Write_Row@i i `uc  1 a 1 11 ]
-"161
+"168
 [v NVM_Write_Row@address address `us  1 p 2 5 ]
 [v NVM_Write_Row@WriteBuff WriteBuff `*.4uc  1 p 1 7 ]
 [v NVM_Write_Row@Length Length `uc  1 p 1 8 ]
-"186
+"193
 } 0
-"141
+"148
 [v _NWM_Unlock NWM_Unlock `(v  1 e 1 0 ]
 {
-"147
+"154
 } 0
-"124
+"131
 [v _NVM_Read NVM_Read `(uc  1 e 1 0 ]
 {
 [v NVM_Read@address address `us  1 p 2 5 ]
-"132
+"139
 } 0
 "12
 [v _MCU_Init MCU_Init `(v  1 e 1 0 ]
 {
 "57
 } 0
-"40 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+"41 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _Appl_Init Appl_Init `(v  1 e 1 0 ]
 {
-"43
+"44
 } 0
-"45
+"46
 [v _QueueInit QueueInit `(v  1 s 1 QueueInit ]
 {
-"50
+"51
 } 0
-"166
+"121 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
+[v _AcquireADCChan AcquireADCChan `(us  1 e 2 0 ]
+{
+[v AcquireADCChan@Channel Channel `uc  1 a 1 wreg ]
+"122
+[v AcquireADCChan@ADCres10 ADCres10 `us  1 a 2 9 ]
+"121
+[v AcquireADCChan@Channel Channel `uc  1 a 1 wreg ]
+[v AcquireADCChan@Channel Channel `uc  1 a 1 8 ]
+"129
+} 0
+"167 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _APPL_TASK_10MS APPL_TASK_10MS `(v  1 e 1 0 ]
 {
-"168
-[v APPL_TASK_10MS@LED1 LED1 `uc  1 a 1 67 ]
-"170
-[v APPL_TASK_10MS@LED2 LED2 `uc  1 a 1 66 ]
 "169
+[v APPL_TASK_10MS@LED1 LED1 `uc  1 a 1 67 ]
+"171
+[v APPL_TASK_10MS@LED2 LED2 `uc  1 a 1 66 ]
+"170
 [v APPL_TASK_10MS@D_lay D_lay `uc  1 a 1 65 ]
-"167
+"168
 [v APPL_TASK_10MS@OldValue OldValue `uc  1 s 1 OldValue ]
-"182
+"183
 } 0
-"93
+"94
 [v _deQueue deQueue `(uc  1 s 1 deQueue ]
 {
-"95
+"96
 [v deQueue@element element `uc  1 a 1 14 ]
-"110
+"111
 } 0
-"57
+"58
 [v _IsEmpty IsEmpty `(uc  1 s 1 IsEmpty ]
 {
-"60
+"61
 } 0
-"103 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
+"110 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 [v _SetPWM2 SetPWM2 `(v  1 e 1 0 ]
 {
 [v SetPWM2@DutyCycle DutyCycle `us  1 p 2 5 ]
-"106
+"113
 } 0
-"98
+"105
 [v _SetPWM1 SetPWM1 `(v  1 e 1 0 ]
 {
 [v SetPWM1@DutyCycle DutyCycle `us  1 p 2 15 ]
-"101
+"108
 } 0
-"112 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+"113 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _LinearTransiant LinearTransiant `(v  1 s 1 LinearTransiant ]
 {
 [v LinearTransiant@NewValue NewValue `uc  1 a 1 wreg ]
-"116
+"117
 [v LinearTransiant@Slope Slope `f  1 a 4 0 ]
-"114
-[v LinearTransiant@diff diff `us  1 a 2 4 ]
 "115
+[v LinearTransiant@diff diff `us  1 a 2 4 ]
+"116
 [v LinearTransiant@i i `uc  1 a 1 7 ]
 [v LinearTransiant@a a `uc  1 a 1 6 ]
-"112
+"113
 [v LinearTransiant@NewValue NewValue `uc  1 a 1 wreg ]
 [v LinearTransiant@OldValue OldValue `uc  1 p 1 56 ]
 [v LinearTransiant@Duration10ms Duration10ms `uc  1 p 1 57 ]
-"117
+"118
 [v LinearTransiant@NewValue NewValue `uc  1 a 1 8 ]
-"144
+"145
 } 0
-"82
+"83
 [v _enQueue enQueue `(v  1 s 1 enQueue ]
 {
 [v enQueue@element element `uc  1 a 1 wreg ]
 [v enQueue@element element `uc  1 a 1 wreg ]
-"84
+"85
 [v enQueue@element element `uc  1 a 1 15 ]
-"91
+"92
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\pic\sources\c99\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
@@ -652,10 +715,10 @@
 [v ___lwmod@dividend dividend `ui  1 p 2 7 ]
 "25
 } 0
-"52 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+"53 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _IsFull IsFull `(uc  1 s 1 IsFull ]
 {
-"55
+"56
 } 0
 "10 C:\Program Files (x86)\Microchip\xc8\pic\sources\c99\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -685,17 +748,17 @@
 "8 C:\Program Files (x86)\Microchip\xc8\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S934 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S970 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S939 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S942 . 4 `l 1 i 4 0 `d 1 f 4 0 `S934 1 fAsBytes 4 0 `S939 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S942  1 a 4 39 ]
+[s S975 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S978 . 4 `l 1 i 4 0 `d 1 f 4 0 `S970 1 fAsBytes 4 0 `S975 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S978  1 a 4 39 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 34 ]
-[s S1011 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S1047 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S1014 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S1011 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S1014  1 a 2 43 ]
+[u S1050 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S1047 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S1050  1 a 2 43 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 38 ]
 "11
@@ -741,53 +804,53 @@
 [v ___fldiv@b b `d  1 p 4 23 ]
 "185
 } 0
-"62 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+"63 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _KeepDistance KeepDistance `(uc  1 s 1 KeepDistance ]
 {
 [v KeepDistance@amount amount `uc  1 a 1 wreg ]
-"64
+"65
 [v KeepDistance@diff diff `s  1 a 2 6 ]
-"65
+"66
 [v KeepDistance@retVal retVal `uc  1 a 1 9 ]
-"62
+"63
 [v KeepDistance@amount amount `uc  1 a 1 wreg ]
-"65
+"66
 [v KeepDistance@amount amount `uc  1 a 1 8 ]
-"80
+"81
 } 0
-"72 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/03-NETWORK/network.c
+"121 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/03-NETWORK/network.c
 [v _Get_Slope1 Get_Slope1 `(uc  1 e 1 0 ]
 {
-"74
+"123
 } 0
-"68
+"117
 [v _Get_PWM2Cmd Get_PWM2Cmd `(uc  1 e 1 0 ]
 {
-"70
+"119
 } 0
-"64
+"113
 [v _Get_PWM1Cmd Get_PWM1Cmd `(uc  1 e 1 0 ]
 {
-"66
+"115
 } 0
-"188 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
+"195 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 [v _ISR ISR `II(v  1 e 1 0 ]
 {
-"189
+"196
 [v ISR@PipeNo PipeNo `uc  1 a 1 4 ]
-"206
+"213
 } 0
 "47 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/NRF24L01/NRF24L01.c
 [v _NRF_ReadPayload NRF_ReadPayload `(v  1 e 1 0 ]
 {
-[v NRF_ReadPayload@Payload Payload `*.4uc  1 a 1 wreg ]
+[v NRF_ReadPayload@Payload Payload `*.5uc  1 a 1 wreg ]
 "49
 [v NRF_ReadPayload@i i `uc  1 a 1 1 ]
 "47
-[v NRF_ReadPayload@Payload Payload `*.4uc  1 a 1 wreg ]
+[v NRF_ReadPayload@Payload Payload `*.5uc  1 a 1 wreg ]
 [v NRF_ReadPayload@PayloadLength PayloadLength `uc  1 p 1 10 ]
 "50
-[v NRF_ReadPayload@Payload Payload `*.4uc  1 a 1 0 ]
+[v NRF_ReadPayload@Payload Payload `*.5uc  1 a 1 0 ]
 "59
 } 0
 "23
@@ -816,15 +879,15 @@
 {
 "223
 } 0
-"108 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
+"115 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/04-DRIVER/target.c
 [v i1_SPI_Exchange SPI_Exchange `(uc  1 e 1 0 ]
 {
 [v i1SPI_Exchange@Data Data `uc  1 p 1 0 ]
-"112
+"119
 } 0
-"161 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
+"162 C:\Users\Nello\Documents\PROJECTS\Dimmer Node\03 - Software\Dim_Node.X\02-SRC/02-APPLICATION/Appl.c
 [v _ClickLed ClickLed `(v  1 e 1 0 ]
 {
 [v ClickLed@DurationMs DurationMs `us  1 p 2 0 ]
-"164
+"165
 } 0
