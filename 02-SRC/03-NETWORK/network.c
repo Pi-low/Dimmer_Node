@@ -20,10 +20,7 @@ void NetworkInit(void) {
     uint8_t AddrPipe0[5] = {0};
     uint8_t AddrPipe1[5] = {0};
     uint8_t TxAddr[5] = {0};
-    uint8_t EEPROM_Row[NB_WORDS_PER_ROW] = {0};
-    
-    NVM_Read_Buff(EEPROM_BASE_ADDR, EEPROM_Row, NB_WORDS_PER_ROW);
-    
+    NwtFlags.Byte = 0;
     for (i = 0; i < 5; i++) {
         if (i < 4) {
             AddrPipe1[i] = EEPROM_Row[i + 6];
@@ -31,6 +28,7 @@ void NetworkInit(void) {
         }
         AddrPipe0[i] = EEPROM_Row[i + 1];
     }
+    
     AddrPipe1[4] = EEPROM_Row[15];
     TxAddr[4] = EEPROM_Row[15];
     
@@ -70,34 +68,58 @@ void NetworkManager(void) {
                 Slope2 = DataPipe[0][4];
                 break;
                 
-            /* Read lights */
+            /* Increment */    
             case 0x02:
+                CmdPWM1 += (DataPipe[0][1] + CmdPWM1 < CmdPWM1) ? 255 : DataPipe[0][1];
+                CmdPWM2 += (DataPipe[0][2] + CmdPWM2 < CmdPWM2) ? 255 : DataPipe[0][2];
+                break;
+                
+            /* Decrement */    
+            case 0x03:
+                CmdPWM1 -= (DataPipe[0][1] - CmdPWM1 > CmdPWM1) ? 0 : DataPipe[0][1];
+                CmdPWM2 -= (DataPipe[0][2] - CmdPWM2 > CmdPWM2) ? 0 : DataPipe[0][2];
+                break;
+                
+            /* Read lights */
+            case 0x04:
                 DataTx[0] = 0x02;
                 DataTx[1] = CmdPWM1;
                 DataTx[2] = Slope1;
                 DataTx[3] = CmdPWM2;
                 DataTx[4] = Slope2;
-                DataTx[5] = 0;
-                DataTx[6] = 0;
-                DataTx[7] = 0;
                 NwtFlags.Tx_Dat = 1;
                 break;
                 
             /* Read Voltage */    
-            case 0x03:
+            case 0x05:
                 DataTx[0] = 0x03;
                 DataTx[1] = (uint8_t) GetVoltage();
                 DataTx[2] = (uint8_t) (GetVoltage() >> 8);
-                DataTx[3] = 0;
-                DataTx[4] = 0;
-                DataTx[5] = 0;
-                DataTx[6] = 0;
-                DataTx[7] = 0;
                 NwtFlags.Tx_Dat = 1;
+                break;
+                
+            /*  Set Node ID*/
+            case 0x06:
+                DataTx[0] = 0x04;
+                DataTx[1] = DataPipe[1][1];
+                EEPROM_Row[15] = DataPipe[1][1];
+                NwtFlags.EE_Wr = 1;
+                NwtFlags.Tx_Dat = 1;
+                break;
+                
+            /* Set Node frequency */    
+            case 0x07:
+                DataTx[0] = 0x04;
+                DataTx[1] = DataPipe[1][1];
+                EEPROM_Row[14] = DataPipe[1][1];
+                NwtFlags.EE_Wr = 1;
+                NwtFlags.Tx_Dat = 1;
+                break;
+                
+            default:
                 break;
         }
         NwtFlags.P0_Rx = 0U;
-    } else {
     }
     
     if (NwtFlags.Tx_Dat != 0) {
@@ -106,7 +128,11 @@ void NetworkManager(void) {
         NRF_StartListening();
         NwtFlags.Tx_Dat = 0;
     }
-    else {
+    
+    if (NwtFlags.EE_Wr != 0) {
+        NVM_Erase(EEPROM_BASE_ADDR);
+        NVM_Write_Row(EEPROM_BASE_ADDR, EEPROM_Row, 16);
+        NwtFlags.EE_Wr = 0;
     }
 }
 

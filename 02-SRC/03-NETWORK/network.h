@@ -18,6 +18,7 @@ typedef union {
         uint8_t P4_Rx : 1;
         uint8_t P5_Rx : 1;
         uint8_t Tx_Dat : 1;
+        uint8_t EE_Wr : 1;
     };
 }u_Flags;
 
