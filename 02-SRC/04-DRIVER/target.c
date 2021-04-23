@@ -6,7 +6,7 @@
 #include "target.h"
 
 uint16_t Tick_1ms;
-
+uint8_t EEPROM_Row[16];
 static void NWM_Unlock (void);
 
 void MCU_Init(void) {
@@ -57,44 +57,38 @@ void MCU_Init(void) {
 }
 
 void NVM_Init(void) {
-    uint8_t EE_Init = NVM_Read(EEPROM_BASE_ADDR);
-    uint8_t InitBuffer[NB_WORDS_PER_ROW] = {0};
+    NVM_Read_Buff(EEPROM_BASE_ADDR, EEPROM_Row, 16);
     
-    if (NVM_Read(EEPROM_BASE_ADDR) != 0xA5) {
+    if (EEPROM_Row[0] != 0xA5) {
         /* 1F80 */
-        InitBuffer[0] = 0xA5; /* Present config flag */
+        EEPROM_Row[0] = 0xA5; /* Present config flag */
         /* PIPE0 addr
          * @1F81: 5 bytes */
-        InitBuffer[1] = 'B';
-        InitBuffer[2] = 'R';
-        InitBuffer[3] = 'O';
-        InitBuffer[4] = 'A';
-        InitBuffer[5] = 'D';
+        EEPROM_Row[1] = 'B';
+        EEPROM_Row[2] = 'R';
+        EEPROM_Row[3] = 'O';
+        EEPROM_Row[4] = 'A';
+        EEPROM_Row[5] = 'D';
         
         /* PIPE 1
          * @1F86: 4bytes */
-        InitBuffer[6] = 'N';
-        InitBuffer[7] = 'O';
-        InitBuffer[8] = 'D';
-        InitBuffer[9] = 'E';
+        EEPROM_Row[6] = 'N';
+        EEPROM_Row[7] = 'O';
+        EEPROM_Row[8] = 'D';
+        EEPROM_Row[9] = 'E';
         
         /* TX ADDR 
          * @1F8B: 4bytes */
-        InitBuffer[10] = 'L';
-        InitBuffer[11] = 'E';
-        InitBuffer[12] = 'D';
-        InitBuffer[13] = 'X';
+        EEPROM_Row[10] = 'L';
+        EEPROM_Row[11] = 'E';
+        EEPROM_Row[12] = 'D';
+        EEPROM_Row[13] = 'X';
         
         /* General config
          * @1F8E */
-        InitBuffer[14] = 100;
-        InitBuffer[15] = DEVICE_ADDR;
-        
-        
-        
-        NVM_Write_Row(EEPROM_BASE_ADDR, InitBuffer, 16);
-    }
-    else {
+        EEPROM_Row[14] = 100;
+        EEPROM_Row[15] = DEVICE_ADDR;
+        NVM_Write_Row(EEPROM_BASE_ADDR, EEPROM_Row, 16);
     }
 }
 
@@ -120,10 +114,11 @@ uint8_t SPI_Exchange(uint8_t Data) {
 
 uint16_t AcquireADCChan(uint8_t Channel) {
     uint16_t ADCres10 = 0;
-    ADCON0 = (Channel << 2) & 0xFD;
+    ADCON0bits.CHS = Channel;
+    ADCON0bits.ADON = 1;
     __delay_us(100);
-    ADCON0 |= 2;
-    while ((ADCON0 & 2) == 0);
+    ADCON0bits.GO = 1;
+    while (ADCON0bits.GO != 0);
     ADCres10 = (uint16_t)(ADRESH << 8) + ADRESL;
     return ADCres10;
 }

@@ -13,6 +13,7 @@
 #define LED_PIN LATCbits.LATC4
 
 extern uint16_t Tick_1ms;
+extern uint8_t EEPROM_Row[16];
 
 void MCU_Init(void);
 void NVM_Init(void);
