@@ -28,6 +28,7 @@ extern u_Flags NwtFlags;
 
 void NetworkInit(void);
 void NetworkManager(void);
+void DataTxManager(void);
 uint8_t Get_PWM1Cmd(void);
 uint8_t Get_PWM2Cmd(void);
 uint8_t Get_Slope1(void);

@@ -20,6 +20,7 @@ void main (void) {
     
     while (1U) {
         Task_LedManager();
+        DataTxManager();
         if (PreviousTick != Tick_1ms) {
             NetworkManager();
             PreviousTick = Tick_1ms;

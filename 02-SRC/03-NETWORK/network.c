@@ -14,6 +14,7 @@ static uint8_t CmdPWM1 = 0U;
 static uint8_t CmdPWM2 = 0U;
 static uint8_t Slope1 = 0U;
 static uint8_t Slope2 = 0U;
+static uint32_t TxTimeout = 0U;
 
 void NetworkInit(void) {
     uint8_t i = 0;
@@ -88,6 +89,7 @@ void NetworkManager(void) {
                 DataTx[3] = CmdPWM2;
                 DataTx[4] = Slope2;
                 NwtFlags.Tx_Dat = 1;
+                TxTimeout = Tick_1ms + 10u;
                 break;
                 
             /* Read Voltage */    
@@ -96,6 +98,7 @@ void NetworkManager(void) {
                 DataTx[1] = (uint8_t) GetVoltage();
                 DataTx[2] = (uint8_t) (GetVoltage() >> 8);
                 NwtFlags.Tx_Dat = 1;
+                TxTimeout = Tick_1ms + 10u;
                 break;
                 
             /*  Set Node ID*/
@@ -105,6 +108,7 @@ void NetworkManager(void) {
                 EEPROM_Row[15] = DataPipe[1][1];
                 NwtFlags.EE_Wr = 1;
                 NwtFlags.Tx_Dat = 1;
+                TxTimeout = Tick_1ms + 10u;
                 break;
                 
             /* Set Node frequency */    
@@ -114,6 +118,7 @@ void NetworkManager(void) {
                 EEPROM_Row[14] = DataPipe[1][1];
                 NwtFlags.EE_Wr = 1;
                 NwtFlags.Tx_Dat = 1;
+                TxTimeout = Tick_1ms + 10u;
                 break;
                 
             default:
@@ -122,17 +127,19 @@ void NetworkManager(void) {
         NwtFlags.P0_Rx = 0U;
     }
     
-    if (NwtFlags.Tx_Dat != 0) {
-        NRF_StopListening();
-        NRF_WritePayload(DataTx, 8);
-        NRF_StartListening();
-        NwtFlags.Tx_Dat = 0;
-    }
-    
     if (NwtFlags.EE_Wr != 0) {
         NVM_Erase(EEPROM_BASE_ADDR);
         NVM_Write_Row(EEPROM_BASE_ADDR, EEPROM_Row, 16);
         NwtFlags.EE_Wr = 0;
+    }
+}
+
+void DataTxManager(void) {
+    if ((NwtFlags.Tx_Dat != 0) && (Tick_1ms > TxTimeout)) {
+        NRF_StopListening();
+        NRF_WritePayload(DataTx, 8);
+        NRF_StartListening();
+        NwtFlags.Tx_Dat = 0;
     }
 }
 
