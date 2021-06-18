@@ -82,7 +82,7 @@ void NetworkManager(void) {
                 
             /* Read lights */
             case 0x04:
-                DataTx[0] = 0x02;
+                DataTx[0] = 0x04;
                 DataTx[1] = CmdPWM1;
                 DataTx[2] = Slope1;
                 DataTx[3] = CmdPWM2;
@@ -92,7 +92,7 @@ void NetworkManager(void) {
                 
             /* Read Voltage */    
             case 0x05:
-                DataTx[0] = 0x03;
+                DataTx[0] = 0x05;
                 DataTx[1] = (uint8_t) GetVoltage();
                 DataTx[2] = (uint8_t) (GetVoltage() >> 8);
                 NwtFlags.Tx_Dat = 1;
@@ -100,7 +100,7 @@ void NetworkManager(void) {
                 
             /*  Set Node ID*/
             case 0x06:
-                DataTx[0] = 0x04;
+                DataTx[0] = 0x06;
                 DataTx[1] = DataPipe[1][1];
                 EEPROM_Row[15] = DataPipe[1][1];
                 NwtFlags.EE_Wr = 1;
@@ -109,7 +109,7 @@ void NetworkManager(void) {
                 
             /* Set Node frequency */    
             case 0x07:
-                DataTx[0] = 0x04;
+                DataTx[0] = 0x07;
                 DataTx[1] = DataPipe[1][1];
                 EEPROM_Row[14] = DataPipe[1][1];
                 NwtFlags.EE_Wr = 1;
