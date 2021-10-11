@@ -9,6 +9,7 @@
 uint8_t DataPipe[2][8] = {{0}, {0}};
 uint8_t DataTx[8] = {0};
 u_Flags NwtFlags;
+s_Addresses NwtAddr;
 
 static uint8_t CmdPWM1 = 0;
 static uint8_t CmdPWM2 = 0;
@@ -18,34 +19,30 @@ static uint32_t TxTimeout = 0;
 
 void NetworkInit(void)
 {
-    uint8_t i = 0;
-    uint8_t AddrPipe0[5] = {0};
-    uint8_t AddrPipe1[5] = {0};
-    uint8_t TxAddr[5] = {0};
+    uint8_t u8i = 0;
     NwtFlags.Byte = 0;
     
-    for (i = 0; i < 5; i++)
+    for (u8i = 0; u8i < 5; u8i++)
     {
-        if (i < 4)
+        NwtAddr.P0Addr[u8i] = EEPROM_Row.s.RX_P0[u8i];
+        if (u8i < 4)
         {
-            AddrPipe1[i] = EEPROM_Row[i + 6];
-            TxAddr[i] = EEPROM_Row[i + 10];
+            NwtAddr.P1Addr[u8i] = EEPROM_Row.s.RX_P1[u8i];
+            NwtAddr.TxAddr[u8i] = EEPROM_Row.s.TX_ADDR[u8i];
         }
-        AddrPipe0[i] = EEPROM_Row[i + 1];
     }
-    
-    AddrPipe1[4] = EEPROM_Row[15];
-    TxAddr[4] = EEPROM_Row[15];
+    NwtAddr.P1Addr[4] = EEPROM_Row.s.UID;
+    NwtAddr.TxAddr[4] = EEPROM_Row.s.UID;
     
     NRF24L01_Init(SPI_Exchange);
     NRF_SetCRCLen(1);
     NRF_SetAddrWidth(5);
     NRF_SetRFDataRate(NRF_1MBPS);
     NRF_SetRFPower(NRF_PWR_MAX);
-    NRF_SetRFChannel(EEPROM_Row[14]);
-    NRF_OpenReadingPipe(PIPE0, AddrPipe0, 8, 1, 1);
-    NRF_OpenReadingPipe(PIPE1, AddrPipe1, 8, 0, 1);
-    NRF_SetTxAddr(TxAddr);
+    NRF_SetRFChannel(EEPROM_Row.s.FCY_Chan);
+    NRF_OpenReadingPipe(PIPE0, NwtAddr.P0Addr, 8, 1, 1);
+    NRF_OpenReadingPipe(PIPE1, NwtAddr.P1Addr, 8, 0, 1);
+    NRF_SetTxAddr(NwtAddr.TxAddr);
     NRF_SetART(10, 4);
     NRF_StartListening();
     Slope1 = 50;
@@ -54,16 +51,17 @@ void NetworkInit(void)
 
 void NetworkManager(void)
 {
+    uint8_t Payload[8] = {0};
     /* Broadcast address */
-    if (NwtFlags.P0_Rx != 0)
+    if (NwtFlags.s.P0_Rx != 0)
     {
-        CmdPWM1 = DataPipe[0][DEVICE_ADDR * 2];
-        CmdPWM2 = DataPipe[0][(DEVICE_ADDR * 2) + 1];
-        NwtFlags.P1_Rx = 0;
+        CmdPWM1 = DataPipe[0][EEPROM_Row.s.UID * 2];
+        CmdPWM2 = DataPipe[0][(EEPROM_Row.s.UID * 2) + 1];
+        NwtFlags.s.P0_Rx = 0;
     }
     
     /* Node address */
-    if (NwtFlags.P1_Rx != 0)
+    if (NwtFlags.s.P1_Rx != 0)
     {
         switch (DataPipe[1][0])
         {
@@ -89,66 +87,62 @@ void NetworkManager(void)
                 
             /* Read lights */
             case 0x04:
-                DataTx[0] = 0x04;
-                DataTx[1] = CmdPWM1;
-                DataTx[2] = Slope1;
-                DataTx[3] = CmdPWM2;
-                DataTx[4] = Slope2;
-                NwtFlags.Tx_Dat = 1;
-                TxTimeout = Tick_1ms + 10;
+                Payload[0] = 0x04;
+                Payload[1] = CmdPWM1;
+                Payload[2] = Slope1;
+                Payload[3] = CmdPWM2;
+                Payload[4] = Slope2;
+                QueueMessage(Payload);
                 break;
                 
             /* Read Voltage */    
             case 0x05:
-                DataTx[0] = 0x05;
-                DataTx[1] = (uint8_t) GetVoltage();
-                DataTx[2] = (uint8_t) (GetVoltage() >> 8);
-                NwtFlags.Tx_Dat = 1;
-                TxTimeout = Tick_1ms + 10;
+                Payload[0] = 0x05;
+                Payload[1] = (uint8_t) GetVoltage();
+                Payload[2] = (uint8_t) (GetVoltage() >> 8);
+                QueueMessage(Payload);
                 break;
                 
             /*  Set Node ID*/
             case 0x06:
-                DataTx[0] = 0x06;
-                DataTx[1] = DataPipe[1][1];
-                EEPROM_Row[15] = DataPipe[1][1];
-                NwtFlags.EE_Wr = 1;
-                NwtFlags.Tx_Dat = 1;
-                TxTimeout = Tick_1ms + 10;
+                Payload[0] = 0x06;
+                Payload[1] = DataPipe[1][1];
+                EEPROM_Row.s.UID = DataPipe[1][1];
+                NwtFlags.s.EE_Wr = 1;
+                QueueMessage(Payload);
                 break;
                 
             /* Set Node frequency */    
             case 0x07:
-                DataTx[0] = 0x07;
-                DataTx[1] = DataPipe[1][1];
-                EEPROM_Row[14] = DataPipe[1][1];
-                NwtFlags.EE_Wr = 1;
-                NwtFlags.Tx_Dat = 1;
-                TxTimeout = Tick_1ms + 10;
+                Payload[0] = 0x07;
+                Payload[1] = DataPipe[1][1];
+                EEPROM_Row.s.FCY_Chan = DataPipe[1][1];
+                NwtFlags.s.EE_Wr = 1;
+                QueueMessage(Payload);
                 break;
                 
             default:
                 break;
         }
-        NwtFlags.P0_Rx = 0;
+        NwtFlags.s.P1_Rx = 0;
     }
     
-    if (NwtFlags.EE_Wr != 0)
+    if (NwtFlags.s.EE_Wr != 0)
     {
         NVM_Erase(EEPROM_BASE_ADDR);
-        NVM_Write_Row(EEPROM_BASE_ADDR, EEPROM_Row, 16);
-        NwtFlags.EE_Wr = 0;
+        NVM_Write_Row(EEPROM_BASE_ADDR, EEPROM_Row.EE_ARRAY, 16);
+        NwtFlags.s.EE_Wr = 0;
     }
 }
 
 void DataTxManager(void)
 {
-    if ((NwtFlags.Tx_Dat != 0) && (Tick_1ms > TxTimeout))
+    if ((NwtFlags.s.Tx_Dat != 0) && (Tick_1ms > TxTimeout))
     {
         NRF_StopListening();
         NRF_WritePayload(DataTx, 8);
         NRF_StartListening();
-        NwtFlags.Tx_Dat = 0;
+        NwtFlags.s.Tx_Dat = 0;
     }
 }
 
@@ -170,4 +164,15 @@ uint8_t Get_Slope1(void)
 uint8_t Get_Slope2(void)
 {
     return Slope2;
+}
+
+void QueueMessage(uint8_t Buffer[])
+{
+    uint8_t u8i;
+    for (u8i = 0; u8i < 8; u8i++)
+    {
+        DataTx[u8i] = Buffer[u8i];
+    }
+    NwtFlags.s.Tx_Dat = 1;
+    TxTimeout = Tick_1ms + 10;
 }

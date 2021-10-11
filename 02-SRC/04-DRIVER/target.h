@@ -12,8 +12,22 @@
 #define _XTAL_FREQ 16000000UL
 #define LED_PIN LATCbits.LATC4
 
+typedef union
+{
+    uint8_t EE_ARRAY[16];
+    struct
+    {
+        uint8_t InitFlag;
+        uint8_t RX_P0[5];
+        uint8_t RX_P1[4];
+        uint8_t TX_ADDR[4];
+        uint8_t FCY_Chan;
+        uint8_t UID;
+    }s;
+}EE_Map;
+
 extern uint16_t Tick_1ms;
-extern uint8_t EEPROM_Row[16];
+extern EE_Map EEPROM_Row;
 
 void MCU_Init(void);
 void NVM_Init(void);

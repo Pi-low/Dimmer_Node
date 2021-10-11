@@ -6,7 +6,7 @@
 #include "target.h"
 
 uint16_t Tick_1ms;
-uint8_t EEPROM_Row[16];
+EE_Map EEPROM_Row;
 static void NWM_Unlock (void);
 
 void MCU_Init(void)
@@ -59,39 +59,39 @@ void MCU_Init(void)
 
 void NVM_Init(void)
 {
-    NVM_Read_Buff(EEPROM_BASE_ADDR, EEPROM_Row, 16);
+    NVM_Read_Buff(EEPROM_BASE_ADDR, EEPROM_Row.EE_ARRAY, 16);
     
-    if (EEPROM_Row[0] != 0xA5)
+    if (EEPROM_Row.s.InitFlag != 0xA5)
     {
         /* 1F80 */
-        EEPROM_Row[0] = 0xA5; /* Present config flag */
+        EEPROM_Row.s.InitFlag = 0xA5; /* Present config flag */
         /* PIPE0 addr
          * @1F81: 5 bytes */
-        EEPROM_Row[1] = 'B';
-        EEPROM_Row[2] = 'R';
-        EEPROM_Row[3] = 'O';
-        EEPROM_Row[4] = 'A';
-        EEPROM_Row[5] = 'D';
+        EEPROM_Row.EE_ARRAY[1] = 'B';
+        EEPROM_Row.EE_ARRAY[2] = 'R';
+        EEPROM_Row.EE_ARRAY[3] = 'O';
+        EEPROM_Row.EE_ARRAY[4] = 'A';
+        EEPROM_Row.EE_ARRAY[5] = 'D';
         
         /* PIPE 1
          * @1F86: 4bytes */
-        EEPROM_Row[6] = 'N';
-        EEPROM_Row[7] = 'O';
-        EEPROM_Row[8] = 'D';
-        EEPROM_Row[9] = 'E';
+        EEPROM_Row.EE_ARRAY[6] = 'N';
+        EEPROM_Row.EE_ARRAY[7] = 'O';
+        EEPROM_Row.EE_ARRAY[8] = 'D';
+        EEPROM_Row.EE_ARRAY[9] = 'E';
         
         /* TX ADDR 
          * @1F8B: 4bytes */
-        EEPROM_Row[10] = 'L';
-        EEPROM_Row[11] = 'E';
-        EEPROM_Row[12] = 'D';
-        EEPROM_Row[13] = 'X';
+        EEPROM_Row.EE_ARRAY[10] = 'L';
+        EEPROM_Row.EE_ARRAY[11] = 'E';
+        EEPROM_Row.EE_ARRAY[12] = 'D';
+        EEPROM_Row.EE_ARRAY[13] = 'X';
         
         /* General config
          * @1F8E */
-        EEPROM_Row[14] = 100;
-        EEPROM_Row[15] = DEVICE_ADDR;
-        NVM_Write_Row(EEPROM_BASE_ADDR, EEPROM_Row, 16);
+        EEPROM_Row.s.FCY_Chan = 100;
+        EEPROM_Row.s.UID = DEVICE_ADDR;
+        NVM_Write_Row(EEPROM_BASE_ADDR, EEPROM_Row.EE_ARRAY, 16);
     }
 }
 
