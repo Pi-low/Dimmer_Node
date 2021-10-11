@@ -13,6 +13,7 @@ static void enQueue(uint8_t element);
 static uint8_t deQueue(void);
 static void LinearTransiant(uint8_t NewValue, uint8_t OldValue, uint8_t Duration10ms);
 
+/* 10bit Gamma table */
 const uint16_t gamma10[256] = {
      0,   0,   0,   0,   0,   0,   1,   1,   1,   1,   2,   2,   2,   3,   3,   4,
      4,   5,   5,   6,   6,   7,   8,   8,   9,  10,  11,  11,  12,  13,  14,  15,
@@ -34,11 +35,12 @@ const uint16_t gamma10[256] = {
 
 static t_Circular_queue MyQueue;
 static uint8_t CircularBuffer[QUEUE_BUF_SIZE] = {0};
-static uint8_t Click = 0u;
-static uint16_t Click_Duration = 0u;
+static uint8_t Click = 0;
+static uint16_t Click_Duration = 0;
 static uint16_t SysVoltage = 0;
 
-void Appl_Init(void) {
+void Appl_Init(void)
+{
     LED_PIN = 0;
     QueueInit();
 }
@@ -52,7 +54,7 @@ static void QueueInit(void)
 
 static uint8_t IsFull(void)
 {
-    return ((MyQueue.Front == (MyQueue.Rear + 1)) || ((MyQueue.Front == 0) && (MyQueue.Rear == (MyQueue.BufferSize - 1)))) ? 1u : 0u;
+    return ((MyQueue.Front == (MyQueue.Rear + 1)) || ((MyQueue.Front == 0) && (MyQueue.Rear == (MyQueue.BufferSize - 1)))) ? 1 : 0;
 }
 
 static uint8_t IsEmpty(void)
@@ -71,12 +73,7 @@ static uint8_t KeepDistance(uint8_t amount)
         {
             retVal = 0;
         }
-        else
-        {  }
-        
     }
-    else
-    {  }
     return retVal;
 }
 
@@ -88,7 +85,6 @@ static void enQueue(uint8_t element)
         MyQueue.Rear = (MyQueue.Rear + 1) % MyQueue.BufferSize;
         CircularBuffer[MyQueue.Rear] = element;
     }
-    else { /* Do Nothing */ }
 }
 
 static uint8_t deQueue(void)
@@ -140,31 +136,32 @@ static void LinearTransiant(uint8_t NewValue, uint8_t OldValue, uint8_t Duration
             enQueue(NewValue);
         }
     }
-    else { /* Do Nothing */ }
     
 }
 
-void Task_LedManager(void) {
+void Task_LedManager(void)
+{
     static uint16_t Timeout = 0;
-    if (Click) {
+    if (Click)
+    {
         Click = 0;
         LED_PIN = 1;
         Timeout = Tick_1ms + Click_Duration;
     }
-    else if ((Tick_1ms >= Timeout) && (LED_PIN == 1)) {
+    else if ((Tick_1ms >= Timeout) && (LED_PIN == 1))
+    {
         LED_PIN = 0;
-    }
-    else {
-        
     }
 }
 
-void ClickLed(uint16_t DurationMs) {
+void ClickLed(uint16_t DurationMs)
+{
     Click = 1;
     Click_Duration = DurationMs;
 }
 
-void APPL_TASK_10MS(void) {
+void APPL_TASK_10MS(void)
+{
     static uint8_t OldValue = 0;
     uint8_t LED1 = Get_PWM1Cmd();
     uint8_t D_lay = Get_Slope1();
@@ -173,19 +170,20 @@ void APPL_TASK_10MS(void) {
     LinearTransiant(LED1, OldValue, D_lay);
     OldValue = LED1;
     
-    if (KeepDistance(1) != 0) {
+    if (KeepDistance(1) != 0)
+    {
         enQueue(OldValue);
-    }
-    else {
     }
     SetPWM1(gamma10[deQueue()]);
     SetPWM2(gamma10[LED2]);
 }
 
-void RefreshVoltage(uint16_t Value) {
+void RefreshVoltage(uint16_t Value)
+{
     SysVoltage = Value;
 }
 
-uint16_t GetVoltage(void) {
+uint16_t GetVoltage(void)
+{
     return SysVoltage;
 }

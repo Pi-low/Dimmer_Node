@@ -9,8 +9,9 @@ uint16_t Tick_1ms;
 uint8_t EEPROM_Row[16];
 static void NWM_Unlock (void);
 
-void MCU_Init(void) {
-    Tick_1ms = 0u;
+void MCU_Init(void)
+{
+    Tick_1ms = 0;
     OSCCON = 0x78;
     
     ANSELA = 0x00;
@@ -56,10 +57,12 @@ void MCU_Init(void) {
     INTCONbits.GIE = 1;
 }
 
-void NVM_Init(void) {
+void NVM_Init(void)
+{
     NVM_Read_Buff(EEPROM_BASE_ADDR, EEPROM_Row, 16);
     
-    if (EEPROM_Row[0] != 0xA5) {
+    if (EEPROM_Row[0] != 0xA5)
+    {
         /* 1F80 */
         EEPROM_Row[0] = 0xA5; /* Present config flag */
         /* PIPE0 addr
@@ -92,27 +95,32 @@ void NVM_Init(void) {
     }
 }
 
-uint16_t GetTick_1ms(void) {
+uint16_t GetTick_1ms(void)
+{
     return Tick_1ms;
 }
 
-void SetPWM1(uint16_t DutyCycle) {
-    PWM1DCL = (uint8_t) DutyCycle << 6u;
+void SetPWM1(uint16_t DutyCycle)
+{
+    PWM1DCL = (uint8_t) DutyCycle << 6;
     PWM1DCH = (uint8_t) (DutyCycle >> 2);
 }
 
-void SetPWM2(uint16_t DutyCycle) {
-    PWM2DCL = (uint8_t) DutyCycle << 6u;
+void SetPWM2(uint16_t DutyCycle)
+{
+    PWM2DCL = (uint8_t) DutyCycle << 6;
     PWM2DCH = (uint8_t) (DutyCycle >> 2);
 }
 
-uint8_t SPI_Exchange(uint8_t Data) {
+uint8_t SPI_Exchange(uint8_t Data)
+{
     SSP1BUF = Data;
     while (!SSP1STATbits.BF);
     return SSP1BUF;
 }
 
-uint16_t AcquireADCChan(uint8_t Channel) {
+uint16_t AcquireADCChan(uint8_t Channel)
+{
     uint16_t ADCres10 = 0;
     ADCON0bits.CHS = Channel;
     ADCON0bits.ADON = 1;
@@ -123,7 +131,8 @@ uint16_t AcquireADCChan(uint8_t Channel) {
     return ADCres10;
 }
 
-uint8_t NVM_Read(uint16_t address) {
+uint8_t NVM_Read(uint16_t address)
+{
     PMCON1bits.CFGS = 0;
     PMADRH = (uint8_t) (address >> 8);
     PMADRL = (uint8_t) address;
@@ -133,14 +142,17 @@ uint8_t NVM_Read(uint16_t address) {
     return PMDATL;
 }
 
-void NVM_Read_Buff(uint16_t address, uint8_t RBuff[], uint8_t length) {
+void NVM_Read_Buff(uint16_t address, uint8_t RBuff[], uint8_t length)
+{
     uint8_t i = 0;
-    for (i = 0;  i < length; i++) {
+    for (i = 0;  i < length; i++)
+    {
         RBuff[i] = NVM_Read(address + i);
     }
 }
 
-void NWM_Unlock(void) {
+void NWM_Unlock(void)
+{
     PMCON2 = 0x55;
     PMCON2 = 0xAA;
     PMCON1bits.WR = 1;
@@ -148,7 +160,8 @@ void NWM_Unlock(void) {
     NOP();
 }
 
-void NVM_Erase(uint16_t address) {
+void NVM_Erase(uint16_t address)
+{
     di(); /* Disable interrupt */
     PMCON1bits.CFGS = 0;
     PMADRH = (uint8_t) (address >> 8);
@@ -160,9 +173,11 @@ void NVM_Erase(uint16_t address) {
     ei(); /* Enable interrupt */
 }
 
-void NVM_Write_Row(uint16_t address, uint8_t WriteBuff[], uint8_t Length) {
+void NVM_Write_Row(uint16_t address, uint8_t WriteBuff[], uint8_t Length)
+{
     uint8_t i = 0;
-    if (Length < NB_WORDS_PER_ROW && !(address % NB_WORDS_PER_ROW)) {
+    if (Length < NB_WORDS_PER_ROW && !(address % NB_WORDS_PER_ROW))
+    {
         di(); /* Disable interrupt */
         PMADRH = (uint8_t) (address >> 8);
         PMADRL = (uint8_t) address;
@@ -171,7 +186,8 @@ void NVM_Write_Row(uint16_t address, uint8_t WriteBuff[], uint8_t Length) {
         PMCON1bits.LWLO = 1;
         
         /* Load latched */
-        while (i < Length) {
+        while (i < Length)
+        {
             PMDATL = WriteBuff[i];
             PMDATH = 0;
             NWM_Unlock();
@@ -183,26 +199,25 @@ void NVM_Write_Row(uint16_t address, uint8_t WriteBuff[], uint8_t Length) {
         PMCON1bits.WREN = 0;
         ei(); /* Enable interrupt */
     }
-    else {
-    }
 }
 
-void __interrupt() ISR (void) {
+void __interrupt() ISR (void)
+{
     uint8_t PipeNo = 0;
-    if (TMR0IF == 1) {
+    if (TMR0IF == 1)
+    {
         TMR0 = 5;
         Tick_1ms++;
         TMR0IF = 0;
     }
-    else if (IOCIF == 1) {
+    else if (IOCIF == 1)
+    {
+        /* New data available */
         ClickLed(50);
         PipeNo = NRF_Available();
         NRF_ReadPayload(DataPipe[PipeNo], 8);
-        NwtFlags.Byte = 1U << PipeNo;
+        NwtFlags.Byte = 1 << PipeNo;
         IOCAF = 0;
         IOCIF = 0;
-    }
-    else {
-        
     }
 }

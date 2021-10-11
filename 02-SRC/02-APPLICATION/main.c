@@ -8,51 +8,51 @@
 #include "../04-DRIVER/target.h"
 #include "Appl.h"
 
-void main (void) {
-    uint16_t Task10ms = 10U;
-    uint16_t Task100ms = 100U;
-    uint16_t Task1000ms = 1000U;
+void main (void)
+{
+    uint16_t Task10ms = 10;
+    uint16_t Task100ms = 100;
+    uint16_t Task1000ms = 1000;
     uint16_t PreviousTick = 0;
     MCU_Init();
     NVM_Init();
     NetworkInit();
     Appl_Init();
     
-    while (1U) {
+    while (1)
+    {
         Task_LedManager();
         DataTxManager();
-        if (PreviousTick != Tick_1ms) {
+        if (PreviousTick != Tick_1ms)
+        {
             NetworkManager();
             PreviousTick = Tick_1ms;
         }
         /*=========================*/
         /*        TASK 10MS        */
         /*=========================*/
-        if (Tick_1ms >= Task10ms) {
-            Task10ms = Tick_1ms + 10U;
+        if (Tick_1ms >= Task10ms)
+        {
+            Task10ms = Tick_1ms + 10;
             APPL_TASK_10MS();
-        }
-        else {
         }
         
         /*=========================*/
         /*       TASK 100MS        */
         /*=========================*/
-        if (Tick_1ms >= Task100ms) {
-            Task100ms = Tick_1ms + 100U;
+        if (Tick_1ms >= Task100ms)
+        {
+            Task100ms = Tick_1ms + 100;
             RefreshVoltage(AcquireADCChan(8));
-        }
-        else {
         }
         
         /*=========================*/
         /*         TASK 1S         */
         /*=========================*/
-        if (Tick_1ms >= Task1000ms) {
-            Task1000ms = Tick_1ms + 1000U;
+        if (Tick_1ms >= Task1000ms)
+        {
+            Task1000ms = Tick_1ms + 1000;
             
-        }
-        else {
         }
     }
 }
